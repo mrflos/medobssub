@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Medobs-phone</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon icon-left-nav pull-left" href="index.html" data-transition="slide-out"></a>
+      <a class="icon icon-refresh pull-right"></a>
+      <h1 class="title">Saisir un site de plongée</h1>
+    </header>
+    
+    <nav class="bar bar-tab">
+      <a class="tab-item" href="saisir-observations.html">
+        <span class="icon icon-compose"></span>
+        <span class="tab-label">Ajouter obs.</span>
+      </a>
+      <a class="tab-item" href="mes-observations.html">
+        <span class="icon icon-person"></span>
+        <span class="tab-label">Mes obs.</span>
+      </a>
+      <a class="tab-item" href="observations.html">
+        <span class="icon icon-search"></span>
+        <span class="tab-label">Toutes obs.</span>
+      </a>
+      <a class="tab-item" href="carte-observations.html">
+        <span class="icon icon-info"></span>
+        <span class="tab-label">Carte</span>
+      </a>
+      <a class="tab-item" href="ambassadeur.html">
+        <span class="icon icon-star-filled"></span>
+        <span class="tab-label">Ambassadeur</span>
+      </a>
+    </nav>
+
+    <div class="content">
+        <form id="form-site" class="list-spacer">
+                   
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3"><span class="symbole_obligatoire">*&nbsp;</span>Nom du site : </div>
+          <div class="controls col-lg-8">
+          <input name="bf_titre" class="form-control input-xxlarge" id="bf_titre" maxlength="255" size="255" required="required" type="text">
+          </div>
+          </div>
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3">
+          Zone géographique : </div>
+          <div class="controls col-lg-8">
+          <select class="form-control" id="listelisteDepartement" name="listelisteDepartement">
+          <option value="" selected="selected">Choisir..</option>
+          <option value="06">Alpes maritimes</option>
+          <option value="13">Bouches du Rhone</option>
+          <option value="83">Var</option>
+          <option value="34">Herault</option>
+          <option value="66">Pyrenées orientales</option>
+          <option value="20">Corse</option>
+          <option value="9">Sicile</option>
+          <option value="AUT">Autre</option>
+          </select>
+          </div>
+          </div>
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3"><span class="symbole_obligatoire">*&nbsp;</span>Code postal : </div>
+          <div class="controls col-lg-8">
+          <input name="bf_code_postal" class="form-control input-xxlarge" id="bf_code_postal" maxlength="5" size="5" required="required" type="text">
+          </div>
+          </div>
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3"><span class="symbole_obligatoire">*&nbsp;</span>Ville : </div>
+          <div class="controls col-lg-8">
+          <input name="bf_ville" class="form-control input-xxlarge" id="bf_ville" maxlength="80" size="80" required="required" type="text">
+          </div>
+          </div>
+
+          <h5>Glisser le marqueur sur la carte pour positionner le site :</h5>
+                  
+          <div id="map-saisir-site" style="clear:right; margin-top:8px; width: 100%; height: 350px;"></div><div class="control-group form-group">
+          <div class="control-label col-lg-3">
+
+
+
+          Description du site &nbsp;&nbsp;<img class="tooltip_aide" title="Relief, espèces remarquables, etc." src="tools/bazar/presentation/images/aide.png" alt="image aide" height="16" width="16"> :</div>
+          <div class="controls col-lg-8"> 
+          <textarea id="bf_decriptif" class="form-control input-xxlarge wiki-textarea" name="bf_decriptif" cols="120" rows="10"></textarea>
+          </div>
+          </div>
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3">
+          Image de présentation 1 &nbsp;&nbsp;<img class="tooltip_aide" title="Votre image doit faire 140 pixels de large sur 140 pixels de haut maximum" src="tools/bazar/presentation/images/aide.png" alt="image aide" height="16" width="16"> :</div>
+          <div class="controls col-lg-8"> 
+          <input name="imagebf_image1" type="file">
+          </div>
+          </div>
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3">
+          Image de présentation 2 &nbsp;&nbsp;<img class="tooltip_aide" title="Votre image doit faire 140 pixels de large sur 140 pixels de haut maximum" src="tools/bazar/presentation/images/aide.png" alt="image aide" height="16" width="16"> :</div>
+          <div class="controls col-lg-8"> 
+          <input name="imagebf_image2" type="file">
+          </div>
+          </div>
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3">
+          Image de présentation 3 &nbsp;&nbsp;<img class="tooltip_aide" title="Votre image doit faire 140 pixels de large sur 140 pixels de haut maximum" src="tools/bazar/presentation/images/aide.png" alt="image aide" height="16" width="16"> :</div>
+          <div class="controls col-lg-8"> 
+          <input name="imagebf_image3" type="file">
+          </div>
+          </div>
+          <div class="control-group form-group">
+          <div class="control-label col-lg-3">
+          Image de présentation 4 &nbsp;&nbsp;<img class="tooltip_aide" title="Votre image doit faire 140 pixels de large sur 140 pixels de haut maximum" src="tools/bazar/presentation/images/aide.png" alt="image aide" height="16" width="16"> :</div>
+          <div class="controls col-lg-8"> 
+          <input name="imagebf_image4" type="file">
+          </div>
+          </div>
+          
+          <div class="form-actions"><a class="btn btn-danger bouton_annuler" name="annuler" href="http://ecorem.fr/medobs-sub/wakka.php?wiki=SaisSite">Annuler</a>&nbsp;<a class="btn btn-success bouton_sauver" name="valider" href="#">Valider</a></div>
+          <input name="antispam" value="0" type="hidden">
+          <input id="bf_ce_pays" name="bf_ce_pays" value="fr" type="hidden">
+          <input name="MAX_FILE_SIZE" value="92274688" type="hidden">
+          <input name="id_typeannonce" value="27" type="hidden">
+        </form>
+    </div><!-- /.content -->
+  </body>
+</html>

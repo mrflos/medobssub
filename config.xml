@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="fr.ecorem.medobssub" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Medobs-sub</name>
+    <description>
+        Une application pour saisir et visualiser des observations sous-marines.
+    </description>
+    <author email="mrflos@gmail.com" href="http://florian-express.info">
+        Florian Schmitt
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <platform name="android">
+		<icon src="res/android/ldpi.png" density="ldpi" />
+		<icon src="res/android/mdpi.png" density="mdpi" />
+		<icon src="res/android/hdpi.png" density="hdpi" />
+		<icon src="res/android/xhdpi.png" density="xhdpi" />
+   </platform>
+</widget>

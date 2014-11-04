@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Medobs-phone</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon icon-left-nav pull-left" href="#menu-observatoire" data-transition="slide-out" ></a>
+      <a class="icon icon-refresh pull-right"></a>
+      <h1 class="title">Observation</h1>
+    </header>
+    
+    <!-- partie raccourcis icone du bas -->
+    <nav class="bar bar-tab">
+      <a class="tab-item" href="#IndicePaysagerAdd">
+        <span class="icon icon-compose"></span>
+        <span class="tab-label">Ajouter obs.</span>
+      </a>
+      <a class="tab-item" href="#IndicePaysagerList">
+        <span class="icon icon-person"></span>
+        <span class="tab-label">Mes obs.</span>
+      </a>
+      <a class="tab-item active" href="#IndicePaysagerList">
+        <span class="icon icon-search"></span>
+        <span class="tab-label">Toutes obs.</span>
+      </a>
+      <a class="tab-item" href="#IndicePaysagerMap">
+        <span class="icon icon-info"></span>
+        <span class="tab-label">Carte</span>
+      </a>
+      <a class="tab-item" href="#ClubsAmbassadeursList">
+        <span class="icon icon-star-filled"></span>
+        <span class="tab-label">Clubs</span>
+      </a>
+    </nav>
+    <!-- fin partie raccourcis icone du bas -->
+
+
+    <div class="fiche-observation content">
+     <div class="content-padded">
+      <h2 class="obs-title"></h2>
+      <h4>Lieu de l'observation</h4>
+      <div class="BAZ_rubrique" data-id="listelisteDepartement">
+      <strong>Zone géographique&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="listefiche27bf_site06">
+      <strong>Sites d'observation des Alpes maritimes&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+      <div class="BAZ_rubrique" data-id="listefiche27bf_site13">
+      <strong>Sites d'observation des Bouches du Rhône&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+      <div class="BAZ_rubrique" data-id="listefiche27bf_site83">
+      <strong>Sites d'observation du Var&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+      <div class="BAZ_rubrique" data-id="listefiche27bf_site34">
+      <strong>Sites d'observation de l'Hérault&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+      <div class="BAZ_rubrique" data-id="listefiche27bf_site66">
+      <strong>Sites d'observation des Pyrénées orientales&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+      <div class="BAZ_rubrique" data-id="listefiche27bf_site20">
+      <strong>Sites d'observation de la Corse&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+      <div class="BAZ_rubrique" data-id="listefiche27bf_site9">
+      <strong>Sites d'observation de Sicile&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+      <div class="BAZ_rubrique" data-id="listefiche27bf_siteautredept">
+      <strong>Sites d'observation d'autres départements&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="listefiche30">
+      <strong>Club de plongée partenaire&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_date">
+      <strong>Date&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <h5>Infos observateur :</h5>
+      <div class="BAZ_rubrique" data-id="listelisteNiveauPlongee">
+      <strong>Votre niveau de plongée&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="listelisteNombrePlongee">
+      <strong>Votre nombre de plongées&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_nom">
+      <strong>Nom&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_mail">
+      <strong>Email&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <!-- <a class="triggerimage left galerie" href="http://ecorem.fr/medobs-sub/cache/image_bf_image1Le_Michel_C_30.08.13_03.JPG">
+      <img src="http://ecorem.fr/medobs-sub/cache/vignette_bf_image1Le_Michel_C_30.08.13_03.JPG" alt="bf_image1Le_Michel_C_30.08.13_03.JPG" />
+      </a>
+      <a class="triggerimage left galerie" href="http://ecorem.fr/medobs-sub/cache/image_bf_image2Le_Michel_C_30.08.13_04.JPG">
+      <img src="http://ecorem.fr/medobs-sub/cache/vignette_bf_image2Le_Michel_C_30.08.13_04.JPG" alt="bf_image2Le_Michel_C_30.08.13_04.JPG" />
+      </a>
+      <a class="triggerimage left galerie" href="http://ecorem.fr/medobs-sub/cache/image_bf_image3Le_Michel_C_30.08.13_05.JPG">
+      <img src="http://ecorem.fr/medobs-sub/cache/vignette_bf_image3Le_Michel_C_30.08.13_05.JPG" alt="bf_image3Le_Michel_C_30.08.13_05.JPG" />
+      </a>
+      <a class="triggerimage left galerie" href="http://ecorem.fr/medobs-sub/cache/image_bf_image4Le_Michel_C_30.08.13_07.JPG">
+      <img src="http://ecorem.fr/medobs-sub/cache/vignette_bf_image4Le_Michel_C_30.08.13_07.JPG" alt="bf_image4Le_Michel_C_30.08.13_07.JPG" />
+      </a> -->
+
+      <div class="BAZ_rubrique" data-id="bf_remarques">
+      <strong>Observation(s) exceptionnelle(s)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <h3>Nature et structure du relief</h3>
+      <div class="BAZ_rubrique" data-id="bf_fond">
+      <strong>Petits fonds rocheux et pieds de falaises (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_roches">
+      <strong>Roches plates (0 à 3)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_eboulis">
+      <strong>Eboulis/champs de blocs détachés (0 à 5)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_blocs">
+      <strong>Gros blocs individualisés (0 à 5)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_piton">
+      <strong>Pitons côtiers et secs rocheux pointus (0 à 8)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_tombant">
+      <strong>Tombants (0 à 8)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_faille">
+      <strong>Failles, cassures, petites cavités (0 à 3)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_rague">
+      <strong>Ragues, petits surplombs (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_cavite">
+      <strong>Grandes cavités visitables (0 à 10)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_canyon">
+      <strong>Canyons et cirques (0 à 5)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_coralligene">
+      <strong>Coralligène dans sa structure physique (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_herbier">
+      <strong>Herbiers de Posidonies entant qu'habitat (0 à 3)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_sable">
+      <strong>Belles étendues sableuses, dunes hydrauliques (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_epave">
+      <strong>Epaves (0 à 6)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_artificiel">
+      <strong>Substrats artificiels, corps morts, enrochements, récifs artificiels (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <h3>Critères biologiques</h3>
+      <div class="BAZ_rubrique" data-id="bf_dresse">
+      <strong>Belles espèces dressées (0 à 8)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_encroutantes">
+      <strong>Facades couvertes d'espèces encroutantes (0 à 6)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_abondance">
+      <strong>Diversité, abondance générale (0 à 6)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_poiss_eau">
+      <strong>Présence de poissons en pleine eau en abondance (0 à 8)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_poiss_fond">
+      <strong>Présence de poissons de fond en abondance (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_emblematique">
+      <strong>Espèces emblématiques et/ou rares  (0 à 8)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+
+      <h3>Critères de dégradation</h3>
+      <div class="BAZ_rubrique" data-id="bf_macrodechet">
+      <strong>Présence de macrodéchets (0 à 3)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_turbidite">
+      <strong>Forte turbidité / couleur de l’eau (0 à 2)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_absence">
+      <strong>Absence remarquée d’espèces colonisant classiquement ce milieu (0 à 2)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_envasement">
+      <strong>Sur-envasement / dégradation lente de la matière organique du fond (0 à 3)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_invasives">
+      <strong>Espèces invasives, recouvrement algal modifiant fortement le milieu (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_pauvrete">
+      <strong>Pauvreté générale du peuplement (0 à 4)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_mortalite">
+      <strong>Mortalités massives signalées (0 à 5)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+
+      <div class="BAZ_rubrique" data-id="bf_destruction">
+      <strong>Signes de destruction physique du milieu (érosion, chalutage) (0 à 5)&nbsp;:</strong>
+      <span class="entry-value"></span>
+      </div> <!-- /.BAZ_rubrique -->
+     </div> <!-- /.content-padded -->
+    </div> <!-- /.content -->
+  </body>
+</html>
