@@ -13,7 +13,7 @@
   </head>
   
   <body>
-  <script id="home-tpl" type="text/template">
+  <script id="home-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <h1 class="title">Medobs-sub</h1>
@@ -39,7 +39,7 @@
     </div><!-- /.content -->  
   </script>
 
-  <script id="menu-observatoire-tpl" type="text/template">
+  <script id="menu-observatoire-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#" data-transition="slide-out" ></a>
@@ -94,7 +94,7 @@
     </div>
   </script>
   
-  <script id="menu-pecheurs-tpl" type="text/template">
+  <script id="menu-pecheurs-tpl" type="text/x-handlebars-template">
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#" data-transition="slide-out" ></a>
       <h1 class="title">Pêcheurs sentinelles</h1>
@@ -188,7 +188,7 @@
     </div>
   </script>
 
-  <script id="IndicePaysager-add-tpl" type="text/template">
+  <script id="IndicePaysager-add-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-observatoire" data-transition="slide-out"></a>
@@ -796,7 +796,7 @@
               <h3 style="clear:both;">Date d'observation</h3>
               <div class="saisir-form-row">
               <label>Date : </label>
-              <input name="bf_date" class="bazar-date" id="bf_date" required="required" value="" type="date">
+              <input name="bf_date" class="bazar-date" id="bf_date" required="required" type="date">
               </div>
 
               <h3>Observateur</h3>
@@ -837,8 +837,6 @@
               <label>Email : </label>
               <input name="bf_mail" class="form-control" id="bf_mail" maxlength="255" size="255" required="required" type="email">
               </div>
-
-              <br>(<i><b>Droits par rapports à la CNIL</b></i>: Gauthier VERBEKE - CPIE Côte Provençale. « Les informations recueillies par les observations des sentinelles font l’objet d’un traitement informatique par l'Agence de l'Eau destiné à suivre l'état de santé écologique des eaux côtières. Conformément à Délibération n°2006-138 du 9 mai 2006, ces données peuvent être utilisées à des fins de communication ou d’information, sauf les données personnelles, pour lesquelles vous pouvez également, pour des motifs légitimes, vous opposer au traitement qui y est fait au sein du CPIE pour assurer la gestion de la bancarisation des données d'observation.)"
 
               <h3 style="clear:both;">Photos pour la galerie</h3>
 
@@ -1058,30 +1056,12 @@
           </div>                  
         </form>
 
-        <!-- fenetre modale d'aide à la saisie criteres-fonds-rocheux -->
-        <div id="modal-criteres-fonds-rocheux" class="modal">
-          <header class="bar bar-nav">
-            <a class="icon icon-close pull-right" href="#modal-criteres-fonds-rocheux"></a>
-            <h1 class="title">Petits fonds rocheux et pieds de falaises</h1>
-          </header>
-          <div class="content">
-            <p class="content-padded">
-              Profondeur 5-10 | structure : plateaux...
-              <h4>Votre appréciation de 0 à 4</h4>
-              <button class="btn btn-block">0</button>
-              <button class="btn btn-block">1</button>
-              <button class="btn btn-block">2</button>
-              <button class="btn btn-block">3</button>
-              <button class="btn btn-block">4</button>
-            </p>
-          </div>
-        </div>
-        <!-- fin fenetre modale -->
+        
 
     </div><!-- /.content -->      
   </script>
 
-  <script id="IndicePaysager-list-tpl" type="text/template">
+  <script id="IndicePaysager-list-tpl" type="text/x-handlebars-template">
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-observatoire" data-transition="slide-out"></a>
       <h1 class="title">Toutes les observations</h1>
@@ -1122,7 +1102,7 @@
     </div><!-- /.content -->
   </script>
 
-  <script id="IndicePaysager-tpl" type="text/template">
+  <script id="IndicePaysager-tpl" type="text/x-handlebars-template">
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#IndicePaysagerList" data-transition="slide-out" ></a>
       
@@ -1501,7 +1481,7 @@
     </div> <!-- /.content -->
   </script>
 
-  <script id="Club-list-tpl" type="text/template">
+  <script id="Club-list-tpl" type="text/x-handlebars-template">
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-observatoire" data-transition="slide-out"></a>
       <h1 class="title">Clubs ambassadeurs</h1>
@@ -1542,7 +1522,7 @@
     </div><!-- /.content -->
   </script>
 
-  <script id="Club-tpl" type="text/template">
+  <script id="Club-tpl" type="text/x-handlebars-template">
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#ClubsAmbassadeursList" data-transition="slide-out" ></a>
       <h1 class="title">Club ambassadeur</h1>
@@ -1634,7 +1614,7 @@
     </div> <!-- /.content -->
   </script>
 
-  <script id="SiteObservation-tpl" type="text/template">
+  <script id="SiteObservation-tpl" type="text/x-handlebars-template">
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#SiteObservationMap" data-transition="slide-out" ></a>
       <h1 class="title">Site d'observation</h1>
@@ -1721,7 +1701,7 @@
     </div> <!-- /.content -->
   </script>
 
-  <script id="SiteObservation-map-tpl" type="text/template">
+  <script id="SiteObservation-map-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-observatoire" data-transition="slide-out"></a>      
@@ -1757,7 +1737,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="SiteObservation-add-tpl" type="text/template">
+  <script id="SiteObservation-add-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-observatoire" data-transition="slide-out"></a>      
@@ -1882,7 +1862,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="PecheursSentinelles-tpl" type="text/template">
+  <script id="PecheursSentinelles-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -1974,7 +1954,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="PecheursSentinelles-map-tpl" type="text/template">
+  <script id="PecheursSentinelles-map-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -1988,7 +1968,7 @@
     <!-- fin contenu de la page -->
   </script>
   
-  <script id="PecheursSentinelles-add-tpl" type="text/template">
+  <script id="PecheursSentinelles-add-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -2526,9 +2506,6 @@
         </div>
         </div>
 
-
-
-        <br>(<i><b>Droits par rapports à la CNIL</b></i>: Emeline Romieu - CPIE Côte Provençale. « Les informations recueillies par les observations des sentinelles font l’objet d’une analyse au sein du CPIE destiné à une meilleure connaissance et veille du milieu marin. Conformément à Délibération n°2006-138 du 9 mai 2006, ces données peuvent être utilisées à des fins de communication ou d’information, sauf les données personnelles, pour lesquelles vous pouvez également, pour des motifs légitimes, vous opposer au traitement qui y est fait au sein du CPIE pour assurer la gestion de la bancarisation des données d'observation.")
         <div class="control-group form-group">
                             <div class="controls col-lg-8"> 
                                 <div class="checkbox">
@@ -2567,7 +2544,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="FauneFlore-tpl" type="text/template">
+  <script id="FauneFlore-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -2772,7 +2749,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="FauneFlore-map-tpl" type="text/template">
+  <script id="FauneFlore-map-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -2786,7 +2763,7 @@
     <!-- fin contenu de la page -->
   </script>
   
-  <script id="FauneFlore-add-tpl" type="text/template">
+  <script id="FauneFlore-add-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -3076,7 +3053,7 @@
         <span class="symbole_obligatoire">*&nbsp;</span>
         Date d'observation : </div>
         <div class="controls col-lg-8">
-        <input type="date" value="" required="required" id="bf_date" class="bazar-date" name="bf_date"></div>
+        <input type="date" required="required" id="bf_date" class="bazar-date" name="bf_date"></div>
         </div>
 
         <h3>Localisation</h3>
@@ -3100,7 +3077,6 @@
         </div>
         </div>
 
-        <br>(<i><b>Droits par rapports à la CNIL</b></i>: Emeline Romieu - CPIE Côte Provençale. « Les informations recueillies par les observations des sentinelles font l’objet d’une analyse au sein du CPIE destiné à une meilleure connaissance et veille du milieu marin. Conformément à Délibération n°2006-138 du 9 mai 2006, ces données peuvent être utilisées à des fins de communication ou d’information, sauf les données personnelles, pour lesquelles vous pouvez également, pour des motifs légitimes, vous opposer au traitement qui y est fait au sein du CPIE pour assurer la gestion de la bancarisation des données d'observation.")
         <input type="hidden" value="1" name="antispam">
         <input type="hidden" value="{{bf_date}} - {{bf_ville}} - Faune Flore" name="bf_titre" id="bf_titre">
         <input type="hidden" value="92274688" name="MAX_FILE_SIZE">
@@ -3112,7 +3088,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="Pollution-tpl" type="text/template">
+  <script id="Pollution-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -3213,7 +3189,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="Pollution-map-tpl" type="text/template">
+  <script id="Pollution-map-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -3227,7 +3203,7 @@
     <!-- fin contenu de la page -->
   </script>
   
-  <script id="Pollution-add-tpl" type="text/template">
+  <script id="Pollution-add-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -3303,7 +3279,7 @@
         <span class="symbole_obligatoire">*&nbsp;</span>
         Date de l'observation : </div>
         <div class="controls col-lg-8">
-        <input type="date" value="" required="required" id="bf_date" class="bazar-date" name="bf_date"></div>
+        <input type="date" required="required" id="bf_date" class="bazar-date" name="bf_date"></div>
         </div>
 
         <h3>Localisation</h3>
@@ -3325,10 +3301,6 @@
         <input type="email" required="required" size="255" maxlength="255" id="bf_mail" class="form-control" name="bf_mail">
         </div>
         </div>
-
-
-
-        <br>(<i><b>Droits par rapports à la CNIL</b></i>: Emeline Romieu - CPIE Côte Provençale. « Les informations recueillies par les observations des sentinelles font l’objet d’une analyse au sein du CPIE destiné à une meilleure connaissance et veille du milieu marin. Conformément à Délibération n°2006-138 du 9 mai 2006, ces données peuvent être utilisées à des fins de communication ou d’information, sauf les données personnelles, pour lesquelles vous pouvez également, pour des motifs légitimes, vous opposer au traitement qui y est fait au sein du CPIE pour assurer la gestion de la bancarisation des données d'observation.")
         <input type="hidden" value="1" name="antispam">
         <input type="hidden" value="{{bf_date}} - {{bf_ville}} - Pollution" name="bf_titre" id="bf_titre">
         <input type="hidden" value="92274688" name="MAX_FILE_SIZE">
@@ -3340,7 +3312,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="Usages-tpl" type="text/template">
+  <script id="Usages-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -3437,7 +3409,7 @@
     <!-- fin contenu de la page -->
   </script>
 
-  <script id="Usages-map-tpl" type="text/template">
+  <script id="Usages-map-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -3451,7 +3423,7 @@
     <!-- fin contenu de la page -->
   </script>
   
-  <script id="Usages-add-tpl" type="text/template">
+  <script id="Usages-add-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
@@ -3557,9 +3529,6 @@
       </div>
       </div>
 
-
-
-      </br>(<i><b>Droits par rapports à la CNIL</b></i>: Emeline Romieu - CPIE Côte Provençale. « Les informations recueillies par les observations des sentinelles font l’objet d’une analyse au sein du CPIE destiné à une meilleure connaissance et veille du milieu marin. Conformément à Délibération n°2006-138 du 9 mai 2006, ces données peuvent être utilisées à des fins de communication ou d’information, sauf les données personnelles, pour lesquelles vous pouvez également, pour des motifs légitimes, vous opposer au traitement qui y est fait au sein du CPIE pour assurer la gestion de la bancarisation des données d'observation.")
       <input name="antispam" type="hidden" value="1" />
       <input id="bf_titre" name="bf_titre" type="hidden" value="{{bf_date}} - {{bf_ville}} - Usage" />
       <input name="MAX_FILE_SIZE" type="hidden" value="92274688" />
@@ -3576,12 +3545,32 @@
 
   <div id="leaflet-map"></div>
 
+  <!-- fenetre modale d'aide à la saisie criteres-fonds-rocheux -->
+  <div id="modal-criteres-fonds-rocheux" class="modal">
+    <header class="bar bar-nav">
+      <a class="icon icon-close pull-right" href="#modal-criteres-fonds-rocheux"></a>
+      <h1 class="title">Petits fonds rocheux et pieds de falaises</h1>
+    </header>
+    <div class="content">
+      <p class="content-padded">
+        Profondeur 5-10 | structure : plateaux...
+        <h4>Votre appréciation de 0 à 4</h4>
+        <button class="btn btn-block">0</button>
+        <button class="btn btn-block">1</button>
+        <button class="btn btn-block">2</button>
+        <button class="btn btn-block">3</button>
+        <button class="btn btn-block">4</button>
+      </p>
+    </div>
+  </div>
+  <!-- fin fenetre modale -->
+
   <script src="cordova.js"></script>
   <script src="js/vendor/jquery-2.1.1.min.js"></script>
   <script src="js/vendor/ratchet.js"></script>
   <script src="js/vendor/leaflet.js"></script>
   <script src="js/vendor/fastclick.js"></script>
-  <script src="js/vendor/handlebars.js"></script>
+  <script src="js/vendor/handlebars-v2.0.0.js"></script>
   <script src="js/vendor/pageslider.js"></script>
   <script src="js/vendor/router.js"></script>
   <script src="js/ViewHome.js"></script>

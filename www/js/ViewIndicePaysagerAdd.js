@@ -10,13 +10,13 @@ var IndicePaysagerAddView = function (map, markers, connection) {
         this.$el.html(this.template());
 
         //va cliquer sur la bonne tabulation dans le formulaire
-        $('.navigation-control .btn', this.$el).on("touchend click", function() {
-            //$('#form-obs .control-content, #form-obs .tab-item').removeClass('active');
-            $(this).parents('.saisie-obs-card').prev().find('.control-item[href="'+$(this).attr('href')+'"]').trigger('touchend').trigger('click');
-            //.addClass('active');
-            //$($(this).attr('href')).addClass('active');
-
-            return false;
+        $('.navigation-control .btn', this.$el).on("touchend", function() {
+            var parentdiv = $('#formulaire');
+            parentdiv.find('.segmented-control .control-item').removeClass('active');
+            parentdiv.find('.control-item[href="'+$(this).attr('href')+'"]').addClass('active');
+            parentdiv.find('.control-content').removeClass('active'); 
+            $($(this).attr('href')).addClass('active');
+            document.getElementById("formulaire").scrollTop = 0; // marche pas TODO : trouver un moyen de remonter
         });
 
         //affiche le nombre à coté du range

@@ -17,6 +17,7 @@ var SiteObservationAddView = function (map, markers, connection) {
 
         function onLocationFound(position) {
             map.removeLayer(markers);
+           
             markers = new L.FeatureGroup();
             var radius = position.coords.accuracy / 2;
             var marker = L.marker([position.coords.latitude, position.coords.longitude], {draggable: true});

@@ -1,6 +1,11 @@
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
 (function () {
 
+	// accelerre le touch pour en faire un clic
+	window.addEventListener('load', function() {
+	    new FastClick(document.body);
+	}, false);
+
     HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
     
     MenuObservatoireView.prototype.template = Handlebars.compile($("#menu-observatoire-tpl").html());
@@ -52,8 +57,6 @@
 
     /* --------------------------------- Event Registration -------------------------------- */
     document.addEventListener('deviceready', function () {
-    	// accelerre le touch pour en faire un clic
-        FastClick.attach(document.body);
 
 		// fenetres d'alerte plus belles
         if (navigator.notification) { 
@@ -166,19 +169,36 @@
 		}
 
 	    /* carte generale */
-	    if (hasConnection()) {
-	    	var map = L.map('leaflet-map', {scrollWheelZoom:true,
-		        zoomControl:false, attributionControl:false
-		    }).setView([42.0300364, 6.9614337], 5);
+	    function initmap(map,where) {
+	    	console.log('where: '+where);
+	    	if (hasConnection()) {
+				if (!map) {
+					var map = L.map('leaflet-map', {scrollWheelZoom:true,
+				        zoomControl:false, attributionControl:false
+				    }).setView([42.0300364, 6.9614337], 5);
 
-		    // add an OpenStreetMap tile layer
-		    L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
-		        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-		    }).addTo(map);
-		    var leafletmap = $('#leaflet-map');
-		    leafletmap.hide();
-		    var markers = new L.FeatureGroup();
-		}
+				    // add an OpenStreetMap tile layer
+				    L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
+				        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+				    }).addTo(map);
+				}
+				if (where) {
+					leafletmap.appendTo(where).show();
+					map.invalidateSize();
+				}
+				return map;
+			} 
+			else {
+				if (where) {
+					alert('Pas de connexion réseau pour afficher la carte ;-( ...');
+				}
+				return false;
+			}
+	    }
+	    var map = initmap('','');
+	    var leafletmap = $('#leaflet-map');
+	    leafletmap.hide();
+	    var markers = new L.FeatureGroup();
 
 		// page d'accueil
     	router.addRoute('', function() { slider.slidePage(new HomeView(data, checkConnection()).render().$el); });
@@ -194,7 +214,6 @@
         });
 		router.addRoute('IndicePaysagerAdd', function() { 
 			slider.slidePage(new IndicePaysagerAddView(map, markers, hasConnection()).render().$el); 
-			leafletmap.appendTo('#map').show();
 		});
 		router.addRoute('IndicePaysagerList', function() { 
 			slider.slidePage(new IndicePaysagerListView(data["indice-paysager.json"]).render().$el); 
@@ -205,11 +224,12 @@
         });
 		router.addRoute('SiteObservationMap', function() { 
 			slider.slidePage(new SiteObservationMapView(data["site-observation.json"], map, markers,hasConnection()).render().$el);
-			leafletmap.appendTo('#SiteObservation-map-content').show();
+			map = initmap(map,'#SiteObservation-map-content');
+			
 		});
 		router.addRoute('SiteObservationAdd', function() { 
 			slider.slidePage(new SiteObservationAddView(map, markers, hasConnection()).render().$el);
-			leafletmap.appendTo('#map').show(); 
+			map = initmap(map,'#map');
 		});
 		router.addRoute('Club/:id', function(id) { slider.slidePage(new ClubView(data["clubs-plongeurs.json"][id]).render().$el); });
 		router.addRoute('ClubsAmbassadeursList', function() { slider.slidePage(new ClubListView(data["clubs-plongeurs.json"]).render().$el); });
@@ -221,11 +241,11 @@
         });
 		router.addRoute('PecheursSentinellesMap', function() { 
 			slider.slidePage(new PecheursSentinellesMapView(data["pecheurs-sentinelles.json"], map, markers,hasConnection()).render().$el);
-			leafletmap.appendTo('#PecheursSentinelles-map-content').show();
+			map = initmap(map,'#PecheursSentinelles-map-content');
 		});
 		router.addRoute('PecheursSentinellesAdd', function() { 
 			slider.slidePage(new PecheursSentinellesAddView(map, markers, hasConnection()).render().$el); 
-			leafletmap.appendTo('#map').show();
+			map = initmap(map,'#map');
 		});
 
 		// observations faune flore
@@ -234,11 +254,11 @@
         });
 		router.addRoute('FauneFloreMap', function() { 
 			slider.slidePage(new FauneFloreMapView(data["observations-faune-flore.json"], map, markers,hasConnection()).render().$el);
-			leafletmap.appendTo('#FauneFlore-map-content').show();
+			map = initmap(map,'#FauneFlore-map-content');
 		});
 		router.addRoute('FauneFloreAdd', function() { 
 			slider.slidePage(new FauneFloreAddView(map, markers, hasConnection()).render().$el); 
-			leafletmap.appendTo('#map').show();
+			map = initmap(map,'#map');
 		});
 
 		// observations pollution
@@ -247,11 +267,11 @@
         });
 		router.addRoute('PollutionMap', function() { 
 			slider.slidePage(new PollutionMapView(data["observations-pollution.json"], map, markers,hasConnection()).render().$el);
-			leafletmap.appendTo('#Pollution-map-content').show();
+			map = initmap(map,'#Pollution-map-content');
 		});
 		router.addRoute('PollutionAdd', function() { 
 			slider.slidePage(new PollutionAddView(map, markers,hasConnection()).render().$el);
-			leafletmap.appendTo('#map').show(); 
+			map = initmap(map,'#map');
 		});
 
 		// observations usages
@@ -260,11 +280,11 @@
         });
 		router.addRoute('UsagesMap', function() { 
 			slider.slidePage(new UsagesMapView(data["observations-usages.json"], map, markers,hasConnection()).render().$el);
-			leafletmap.appendTo('#Usages-map-content').show();
+			map = initmap(map,'#Usages-map-content');
 		});
 		router.addRoute('UsagesAdd', function() { 
-			slider.slidePage(new UsagesAddView(map, markers,hasConnection()).render().$el); 
-			leafletmap.appendTo('#map').show();
+			slider.slidePage(new UsagesAddView(map, markers,hasConnection()).render().$el);
+			map = initmap(map,'#map');
 		});
 
 	    // C'EST PARTI !!
