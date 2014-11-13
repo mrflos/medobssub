@@ -1,13 +1,75 @@
-#home-content, #menu-observatoire-content, #menu-pecheurs-content {
-  background: url(../img/underwater.jpg) no-repeat center center;
+/* Charte medobs
+Bleu foncé rgb(29,26,84)
+Bleu turquoise rgb(65,152,127)
+Pêcheurs rgb(133,102,54)
+Plongeurs rgb(127,28,52)
+*/
+
+@media all and (orientation:portrait) {
+  /* Style adjustments for portrait mode goes here */
+  .menu-container {
+    float:none;
+    height:50%;
+    width:100%;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
 }
 
+@media all and (orientation:landscape) {
+  /* Style adjustments for landscape mode goes here */
+  .menu-container {
+    float:left;
+    height:100%;
+    width:40%;
+    margin: 0 5%;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+}
+
+.icon-24 {
+  width:24px;
+  height:24px;
+}
+.menu-container .btn-menu {
+  margin:0 auto;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform:      translateY(-50%);
+} 
+
+#home-content {
+  background: rgb(29,26,84);
+}
+#menu-observatoire-content {
+  background: rgb(127,28,52);
+}
+#menu-pecheurs-content {
+  background: rgb(133,102,54);
+}
 #menu-pecheurs-content>.table-view {
   margin: 15px 0;
 }
 
 #menu-pecheurs-content .btn-menu,  #menu-observatoire-content .btn-menu {
   width:40%;
+}
+
+.BAZ_rubrique { margin-top: 10px;}
+
+.bar {
+  border:none;
+}
+
+a {
+  color:rgb(29,26,84);
 }
 
 .hide, .btn_adresse  {
@@ -68,7 +130,7 @@ input[type=range]::-webkit-slider-thumb {
     height: 24px;
     width: 24px;
     border-radius: 50%;
-    background: #007799;
+    background: rgb(65,152,127);
     margin-top: -12px;
 }
 input[type=range]:focus {
@@ -90,7 +152,7 @@ input[type=range]::-moz-range-thumb {
     height: 24px;
     width: 24px;
     border-radius: 50%;
-    background: #007799;
+    background: rgb(65,152,127);
 }
 
 /*hide the outline behind the border*/
@@ -126,7 +188,7 @@ input[type=range]::-ms-thumb {
     height: 24px;
     width: 24px;
     border-radius: 50%;
-    background: #007799;
+    background: rgb(65,152,127);
 }
 input[type=range]:focus::-ms-fill-lower {
     background: #888;
@@ -169,7 +231,7 @@ input[type=range]:focus::-ms-fill-upper {
 .menu-pecheurs .table-view-divider {padding-top:25px;}
 
 .table-view-cell .icon {
-  color: #007aff;
+  color: rgb(29,26,84);
 }
 .saisie-obs-card {
   margin:5px;
@@ -203,7 +265,7 @@ border-radius: 3px
 }
 
 .control-label {
-  color: #007799;
+  color: rgb(29,26,84);
   font-weight: bold;
 }
 
@@ -211,7 +273,11 @@ border-radius: 3px
   margin: 20px auto;
   display: block;
   max-width: 318px;
-  border-radius: 15px;
+  /*border-radius: 15px;*/
+  border-radius: 0;
+  background: #FFF;
+  border:0;
+
 }
 
 .img-menu {

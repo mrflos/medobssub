@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="css/ratchet.min.css">
-    <link rel="stylesheet" href="css/ratchet-theme-ios.min.css">
+    <!--<link rel="stylesheet" href="css/ratchet-theme-ios.min.css">-->
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/leaflet.css">
   </head>
@@ -16,7 +16,7 @@
   <script id="home-tpl" type="text/x-handlebars-template">
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
-      <h1 class="title">Medobs-sub</h1>
+      <h1 class="title">MedObs-sub</h1>
     </header>
     <!-- fin partie entete du haut -->
 
@@ -30,12 +30,16 @@
     <!-- fin partie infos synchro du bas -->
 
     <div id="home-content" class="content">
-      <a href="#menu-observatoire" class="btn btn-menu">
-        <img class="img-responsive img-centered" src="img/LogoObservatoirePaysagesSM.png" alt="logo Observatoire des Paysages Sous Marins">
-      </a>             
-      <a href="#menu-pecheurs" class="btn btn-menu">
-        <img class="img-responsive img-centered" src="img/LogoPecheursSentinelles.png" alt="logo pecheurs sentinelles">
-      </a> 
+      <div class="menu-container">
+        <a href="#menu-observatoire" class="btn btn-menu">
+          <img class="img-responsive img-centered" src="img/LogoObservatoirePaysagesSM.png" alt="logo Observatoire des Paysages Sous Marins">
+        </a>
+      </div>
+      <div class="menu-container">        
+        <a href="#menu-pecheurs" class="btn btn-menu">
+          <img class="img-responsive img-centered" src="img/LogoPecheursSentinelles.png" alt="logo pecheurs sentinelles">
+        </a> 
+      </div>
     </div><!-- /.content -->  
   </script>
 
@@ -47,12 +51,12 @@
     </header>
     <!-- fin partie entete du haut -->
 
-    <div  id="menu-observatoire-content" class="content">
+    <div id="menu-observatoire-content" class="content">
       <a class="btn btn-menu"><img class="img-responsive img-centered" src="img/LogoObservatoirePaysagesSM.png" alt="logo Observatoire des Paysages Sous Marins"></a>
       <ul class="table-view">
         <li class="table-view-cell media">
           <a class="navigate-right" href="#IndicePaysagerAdd" data-transition="slide-in">
-            <span class="media-object icon icon-compose pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-saisir-donnees.svg">
             <div class="media-body">
               Saisir une observation
             </div>
@@ -60,7 +64,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#IndicePaysagerList" data-transition="slide-in">
-            <span class="media-object icon icon-search pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-obs.svg">
             <div class="media-body">
               Toutes les observations <span class="badge-total-obs badge pull-right">0</span>
             </div>
@@ -68,7 +72,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#SiteObservationMap" data-transition="slide-in">
-            <span class="media-object icon icon-info pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-carte.svg">
             <div class="media-body">
               Carte des sites de plongée <span class="badge-sites-observations badge pull-right">0</span>
             </div>
@@ -76,7 +80,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#SiteObservationAdd" data-transition="slide-in">
-            <span class="media-object icon icon-plus pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-saisir.svg">
             <div class="media-body">
               Saisir un site de plongée
             </div>
@@ -84,7 +88,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#ClubsAmbassadeursList" data-transition="slide-in">
-            <span class="media-object icon icon-star-filled pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-club.svg">
             <div class="media-body">
               Clubs ambassadeurs <span class="badge-ambassadeurs badge pull-right">0</span>
             </div>
@@ -104,10 +108,10 @@
       <a class="btn btn-menu"><img class="img-responsive img-centered" src="img/LogoPecheursSentinelles.png" alt="logo pecheurs sentinelles"></a>
       <ul class="table-view">
         <li class="table-view-divider">Pêcheurs sentinelles <span class="badge-pecheurs-sentinelles badge">0</span></li>
-        <li class="img-menu"><img class="img-responsive img-centered" src="img/LogoPecheursSentinelles.png"></li>
+        <li class="img-menu"><img class="img-responsive img-centered" src="img/devenir-pecheur-sentinelle.jpg"></li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#PecheursSentinellesAdd" data-transition="slide-in">
-            <span class="media-object icon icon-plus pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-saisir.svg">
             <div class="media-body">
             Devenir sentinelle
             </div>
@@ -115,7 +119,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#PecheursSentinellesMap" data-transition="slide-in">
-            <span class="media-object icon icon-info pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-carte.svg">
             <div class="media-body">
             Cartographie
             </div>
@@ -124,11 +128,11 @@
       </ul>
 
       <ul class="table-view">
-        <li class="table-view-divider">Faune et Flore <span class="badge-faune-flore badge">0</span></li>
-        <li class="img-menu"><img class="img-responsive" src="img/oursins.jpg"></li>
+        <li class="table-view-divider">Biodiversité <span class="badge-faune-flore badge">0</span></li>
+        <li class="img-menu"><img class="img-responsive" src="img/biodiversite.jpg"></li>
         <li class="table-view-cell media">
          <a data-transition="slide-in" href="#FauneFloreAdd" class="navigate-right">
-            <span class="media-object icon icon-compose pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-saisir-donnees.svg">
             <div class="media-body">
             Saisir une observation
             </div>
@@ -136,7 +140,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#FauneFloreMap" data-transition="slide-in">
-            <span class="media-object icon icon-info pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-carte.svg">
             <div class="media-body">
             Cartographie
             </div>
@@ -149,7 +153,7 @@
         <li class="img-menu"><img class="img-responsive" src="img/pollutions.jpg"></li>
         <li class="table-view-cell media">
          <a data-transition="slide-in" href="#PollutionAdd" class="navigate-right">
-            <span class="media-object icon icon-compose pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-saisir-donnees.svg">
             <div class="media-body">
             Saisir une observation
             </div>
@@ -157,7 +161,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#PollutionMap" data-transition="slide-in">
-            <span class="media-object icon icon-info pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-carte.svg">
             <div class="media-body">
             Cartographie
             </div>
@@ -170,7 +174,7 @@
         <li class="img-menu"><img class="img-responsive" src="img/usages.jpg"></li>
         <li class="table-view-cell media">
          <a data-transition="slide-in" href="#UsagesAdd" class="navigate-right">
-            <span class="media-object icon icon-compose pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-saisir-donnees.svg">
             <div class="media-body">
             Saisir une observation
             </div>
@@ -178,7 +182,7 @@
         </li>
         <li class="table-view-cell media">
           <a class="navigate-right" href="#UsagesMap" data-transition="slide-in">
-            <span class="media-object icon icon-info pull-left"></span>
+            <img class="media-object icon-24 pull-left" src="img/icon-carte.svg">
             <div class="media-body">
             Cartographie
             </div>
@@ -200,19 +204,19 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item active" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
       <a class="tab-item" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -1053,7 +1057,10 @@
             </span>
             <!-- fin onglet -->
 
-          </div>                  
+          </div>
+          <input type="hidden" value="1" name="antispam">
+          <input type="hidden" value="92274688" name="MAX_FILE_SIZE">
+          <input type="hidden" value="26" name="id_typeannonce">                
         </form>
 
         
@@ -1070,20 +1077,19 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
-      
       <a class="tab-item active" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -1112,20 +1118,20 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
       
       <a class="tab-item active" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -1490,20 +1496,20 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
       
       <a class="tab-item" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item active" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -1531,20 +1537,20 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
       
       <a class="tab-item" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -1563,7 +1569,7 @@
       {{#if bf_nom}}
       <div class="BAZ_rubrique" data-id="bf_nom">
       <span class="BAZ_label">Nom du référent MedObs du club&nbsp;:</span>
-      <span class="BAZ_texte"> Agnès Ferrand</span>
+      <span class="BAZ_texte">{{bf_nom}}</span>
       </div> <!-- /.BAZ_rubrique -->
       {{/if}}
 
@@ -1577,15 +1583,14 @@
       {{#if bf_mail}}
       <div class="BAZ_rubrique" data-id="bf_mail">
       <span class="BAZ_label">Email&nbsp;:</span>
-      <span class="BAZ_texte">{{bf_mail}}</span>
+      <span class="BAZ_texte">{{{bf_mail}}}</span>
       </div> <!-- /.BAZ_rubrique -->
       {{/if}}
 
       {{#if bf_site_internet}}
       <div class="BAZ_rubrique" data-id="bf_site_internet">
       <span class="BAZ_label">Site Internet&nbsp;:</span>
-      <span class="BAZ_texte">
-      <a href="{{bf_site_internet}}" class="BAZ_lien" target="_blank">{{bf_site_internet}}</a></span>
+      <span class="BAZ_texte">{{{bf_site_internet}}}</span>
       </div> <!-- /.BAZ_rubrique -->
       {{/if}}
 
@@ -1623,20 +1628,20 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
       
       <a class="tab-item" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -1712,20 +1717,20 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
       
       <a class="tab-item" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item active" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -1748,20 +1753,20 @@
     <!-- partie raccourcis icone du bas -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="#IndicePaysagerAdd">
-        <span class="icon icon-compose"></span>
+        <img class="icon icon-24" src="img/icon-saisir-donnees.svg">
         <span class="tab-label">Ajouter obs.</span>
       </a>
       
       <a class="tab-item" href="#IndicePaysagerList">
-        <span class="icon icon-search"></span>
+        <img class="icon icon-24" src="img/icon-obs.svg">
         <span class="tab-label">Toutes obs.</span>
       </a>
       <a class="tab-item" href="#SiteObservationMap">
-        <span class="icon icon-info"></span>
+        <img class="icon icon-24" src="img/icon-carte.svg">
         <span class="tab-label">Carte</span>
       </a>
       <a class="tab-item" href="#ClubsAmbassadeursList">
-        <span class="icon icon-star-filled"></span>
+        <img class="icon icon-24" src="img/icon-club.svg">
         <span class="tab-label">Clubs</span>
       </a>
     </nav>
@@ -3573,6 +3578,7 @@
   <script src="js/vendor/handlebars-v2.0.0.js"></script>
   <script src="js/vendor/pageslider.js"></script>
   <script src="js/vendor/router.js"></script>
+  <script src="js/form-controls.js"></script>
   <script src="js/ViewHome.js"></script>
   <script src="js/ViewMenuObservation.js"></script>
   <script src="js/ViewMenuPecheurs.js"></script>
