@@ -31,10 +31,12 @@ Plongeurs rgb(127,28,52)
     transform-style: preserve-3d;
   }
 }
+.modal {background: white;}
 
 .icon-24 {
   width:24px;
   height:24px;
+  display: block;
 }
 .menu-container .btn-menu {
   margin:0 auto;

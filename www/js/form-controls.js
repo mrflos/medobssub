@@ -50,6 +50,16 @@ function init_form_controls(form, exiturl, map, markers, connection) {
     }
     var gps = navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError, { enableHighAccuracy:true, timeout: 5000 });
 
+    //va cliquer sur la bonne tabulation dans le formulaire
+    $('.navigation-control .btn', form).on("touchend", function() {
+        var parentdiv = $('#formulaire', form);
+        parentdiv.find('.segmented-control .control-item').removeClass('active');
+        parentdiv.find('.control-item[href="'+$(this).attr('href')+'"]').addClass('active');
+        parentdiv.find('.control-content').removeClass('active'); 
+        $($(this).attr('href')).addClass('active');
+        document.getElementById("formulaire").scrollTop = 0; // marche pas TODO : trouver un moyen de remonter
+    });
+
     //affiche le nombre à coté du range
     $('input[type=range]', form).on("change mousemove keypress", function() {
         $(this).next('.output-val').html($(this).val());
@@ -177,6 +187,14 @@ function init_form_controls(form, exiturl, map, markers, connection) {
             $('html, body').animate({scrollTop: $(".invalid", form).offset().top - 80}, 800);
         }
         else {
+            var customtitle = $('input[type=hidden][id=bf_titre]');
+            if (customtitle) {
+                var newtitle = customtitle.val();
+                $.each(newtitle.match(/\#\#(.+?)\#\#/g), function( index, value ) {
+                    newtitle = newtitle.replace(value,$('#'+value.replace(/\#/g,'')).val());
+                });
+                customtitle.val(newtitle);
+            }
             var formObj = $(this).parents("form");
             var formURL = formObj.attr("action");
             var formData = new FormData(formObj[0]);
