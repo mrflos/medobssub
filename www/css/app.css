@@ -339,3 +339,16 @@ width: 145px;
     -webkit-transition-duration: .25s;
     transition-duration: .25s;
 }
+
+/* ios hack bug header */
+header.bar.bar-nav {
+  -webkit-transform: translateZ(0);
+}
+
+.bar.bar-header-secondary{
+  -webkit-transform: translateZ(0);
+}
+
+.bar.bar-footer{
+  -webkit-transform: translateZ(0);
+}
