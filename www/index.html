@@ -2521,10 +2521,6 @@
                             </div>
                         </div>
         <h4>Localisez votre port d'attache ou lieu de mise à l'eau :</h4>
-
-        <h5>Pour bien vous positionner sur la carte :</h5>
-
-        1. entrer votre code postal<br>2. cliquer sur le bouton « l’adresse saisie dans ce formulaire » au dessus de la carte <br>3. pour corriger le positionnement, déplacer le point grâce à votre souris
         <div class="control-group form-group">
         <div class="control-label col-lg-3">Code postal : </div>
         <div class="controls col-lg-8">
@@ -2537,7 +2533,10 @@
         <input type="text" required="required" size="80" maxlength="80" id="bf_ville" class="form-control input-xxlarge" name="bf_ville">
         </div>
         </div>
-        <div id="map"></div>
+        <h5>Glisser le marqueur sur la carte pour positionner le site :</h5>        
+          <input type="hidden" name="bf_latitude" class="input-mini" id="latitude" required="required" value="" /> 
+          <input type="hidden" name="bf_longitude" class="input-mini" id="longitude" required="required" value="" /> 
+          <div id="map"></div>
         <input type="hidden" value="1" name="antispam">
         <input type="hidden" value="##bf_nom_prenom##" name="bf_titre" id="bf_titre">
         <input type="hidden" value="92274688" name="MAX_FILE_SIZE">
@@ -2759,7 +2758,7 @@
     <!-- partie entete du haut, avec le titre -->
     <header class="bar bar-nav">
       <a class="icon icon-left-nav pull-left" href="#menu-pecheurs" data-transition="slide-out"></a>      
-      <h1 class="title">Carte des observations faune/flore</h1>
+      <h1 class="title">Carte des observations biodiversité</h1>
     </header>
     <!-- fin partie entete du haut -->
 
@@ -3075,7 +3074,10 @@
         <input type="text" size="30" maxlength="30" id="bf_lieu" class="form-control input-xxlarge" name="bf_lieu">
         </div>
         </div>
-
+        <h5>Glisser le marqueur sur la carte pour positionner le site :</h5>        
+          <input type="hidden" name="bf_latitude" class="input-mini" id="latitude" required="required" value="" /> 
+          <input type="hidden" name="bf_longitude" class="input-mini" id="longitude" required="required" value="" /> 
+          <div id="map"></div>
         <div class="control-group form-group">
         <div class="control-label col-lg-3"><span class="symbole_obligatoire">*&nbsp;</span>Email (cette adresse n'apparaitra pas sur le site) : </div>
         <div class="controls col-lg-8">
@@ -3301,6 +3303,10 @@
         <input type="text" size="30" maxlength="30" id="bf_lieu" class="form-control input-xxlarge" name="bf_lieu">
         </div>
         </div>
+        <h5>Glisser le marqueur sur la carte pour positionner le site :</h5>        
+          <input type="hidden" name="bf_latitude" class="input-mini" id="latitude" required="required" value="" /> 
+          <input type="hidden" name="bf_longitude" class="input-mini" id="longitude" required="required" value="" /> 
+          <div id="map"></div>
         <div class="control-group form-group">
         <div class="control-label col-lg-3"><span class="symbole_obligatoire">*&nbsp;</span>Email (cette adresse n'apparaitra pas sur le site) : </div>
         <div class="controls col-lg-8">
@@ -3526,7 +3532,10 @@
       <input type="text" name="bf_lieu" class="form-control input-xxlarge" id="bf_lieu" maxlength="30" size="30">
       </div>
       </div>
-
+      <h5>Glisser le marqueur sur la carte pour positionner le site :</h5>        
+          <input type="hidden" name="bf_latitude" class="input-mini" id="latitude" required="required" value="" /> 
+          <input type="hidden" name="bf_longitude" class="input-mini" id="longitude" required="required" value="" /> 
+          <div id="map"></div>
 
       <div class="control-group form-group">
       <div class="control-label col-lg-3"><span class="symbole_obligatoire">*&nbsp;</span>Email (cette adresse n'apparaitra pas sur le site) : </div>
@@ -3579,6 +3588,7 @@
   <script src="js/vendor/handlebars-v2.0.0.js"></script>
   <script src="js/vendor/pageslider.js"></script>
   <script src="js/vendor/router.js"></script>
+  <script src="js/leaflet.js"></script>
   <script src="js/form-controls.js"></script>
   <script src="js/ViewHome.js"></script>
   <script src="js/ViewMenuObservation.js"></script>

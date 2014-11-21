@@ -1,4 +1,4 @@
-var PecheursSentinellesMapView = function (PecheursSentinelles, map, markers, hasconnection) {
+var PecheursSentinellesMapView = function (PecheursSentinelles) {
 
     this.initialize = function() {
         this.$el = $('<div/>');
@@ -8,17 +8,15 @@ var PecheursSentinellesMapView = function (PecheursSentinelles, map, markers, ha
 
     this.render = function() {
         this.$el.html(this.template(PecheursSentinelles));
-        if (hasconnection) {
-            map.removeLayer(markers);
-            markers = new L.FeatureGroup();
+        if (hasConnection()) {
+            markers.clearLayers();
             $.each(PecheursSentinelles, function(i, item){
-                //console.log(item);
-                if (item.bf_latitude !== '' && item.bf_longitude !== '') {
+                //console.log(item.bf_latitude,item.bf_longitude);
+                if (typeof item.bf_latitude !== "undefined" && item.bf_latitude !== '' && typeof item.bf_longitude !== "undefined" && item.bf_longitude !== '') {
                     var marker = new L.Marker (new L.LatLng(item.bf_latitude, item.bf_longitude)).bindPopup(new L.Popup({maxWidth:"1000"}).setContent('<a href="#PecheursSentinelles/'+i+'">'+item.bf_titre+'</a>'));
                     markers.addLayer(marker);
                 }
-            });
-            map.addLayer(markers);             
+            });             
         }
         return this;
     };

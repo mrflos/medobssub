@@ -7,7 +7,7 @@ var PollutionAddView = function () {
 
     this.render = function() {
         this.$el.html(this.template());
-        init_form_controls(this.$el, '#Pollution', map, markers, connection);
+        init_form_controls(this.$el, '#Pollution');
         return this;
     };
 

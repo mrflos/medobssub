@@ -82,38 +82,6 @@
 
 		 /* ---------------------------------- Local Functions ---------------------------------- */
 
-		// verifier le type de connexion
-		function checkConnection() {
-		    var networkState = navigator.connection.type;
-		    var states = {};
-		    states[Connection.UNKNOWN]  = 'Inconnue';
-		    states[Connection.ETHERNET] = 'Ethernet';
-		    states[Connection.WIFI]     = 'WiFi';
-		    states[Connection.CELL_2G]  = '2G';
-		    states[Connection.CELL_3G]  = '3G';
-		    states[Connection.CELL_4G]  = '4G';
-		    states[Connection.CELL]     = 'Cellulaire';
-		    states[Connection.NONE]     = 'Pas de connexion';
-
-		    return states[networkState];
-		}
-
-		// peut on utiliser la connexion ?
-		function hasConnection() {
-		    var networkState = navigator.connection.type;
-		    var states = {};
-		    states[Connection.UNKNOWN]  = 'Inconnue';
-		    states[Connection.ETHERNET] = 'Ethernet';
-		    states[Connection.WIFI]     = 'WiFi';
-		    states[Connection.CELL_2G]  = '2G';
-		    states[Connection.CELL_3G]  = '3G';
-		    states[Connection.CELL_4G]  = '4G';
-		    states[Connection.CELL]     = 'Cellulaire';
-		    states[Connection.NONE]     = 'Pas de connexion';
-
-		    return states[networkState] !== 'Pas de connexion' && states[networkState] !== 'Cellulaire';
-		}
-
 	    /*function onFileSystemSuccess(fileSystem) {
 	        jQuery.each(sources, function(index, value) {
 				window.resolveLocalFileSystemURL(store + value[0], readlocalfile(value), downloadAsset(value));
@@ -168,37 +136,7 @@
 
 		}
 
-	    /* carte generale */
-	    function initmap(map,where) {
-	    	console.log('where: '+where);
-	    	if (hasConnection()) {
-				if (!map) {
-					var map = L.map('leaflet-map', {scrollWheelZoom:true,
-				        zoomControl:false, attributionControl:false
-				    }).setView([42.0300364, 6.9614337], 5);
-
-				    // add an OpenStreetMap tile layer
-				    L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png', {
-				        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-				    }).addTo(map);
-				}
-				if (where) {
-					leafletmap.appendTo(where).show();
-					map.invalidateSize();
-				}
-				return map;
-			} 
-			else {
-				if (where) {
-					alert('Pas de connexion réseau pour afficher la carte ;-( ...');
-				}
-				return false;
-			}
-	    }
-	    var map = initmap('','');
-	    var leafletmap = $('#leaflet-map');
-	    leafletmap.hide();
-	    var markers = new L.FeatureGroup();
+	    
 
 		// page d'accueil
     	router.addRoute('', function() { slider.slidePage(new HomeView(data, checkConnection()).render().$el); });
@@ -213,7 +151,7 @@
         	slider.slidePage(new IndicePaysagerView(data["indice-paysager.json"][id]).render().$el);
         });
 		router.addRoute('IndicePaysagerAdd', function() { 
-			slider.slidePage(new IndicePaysagerAddView(map, markers, hasConnection()).render().$el); 
+			slider.slidePage(new IndicePaysagerAddView().render().$el); 
 		});
 		router.addRoute('IndicePaysagerList', function() { 
 			slider.slidePage(new IndicePaysagerListView(data["indice-paysager.json"]).render().$el); 
@@ -223,13 +161,13 @@
         	slider.slidePage(new SiteObservationView(data["site-observation.json"][id]).render().$el);
         });
 		router.addRoute('SiteObservationMap', function() { 
-			slider.slidePage(new SiteObservationMapView(data["site-observation.json"], map, markers,hasConnection()).render().$el);
-			map = initmap(map,'#SiteObservation-map-content');
+			slider.slidePage(new SiteObservationMapView(data["site-observation.json"]).render().$el);
+			initmap('#SiteObservation-map-content');
 			
 		});
 		router.addRoute('SiteObservationAdd', function() { 
-			slider.slidePage(new SiteObservationAddView(map, markers, hasConnection()).render().$el);
-			map = initmap(map,'#map');
+			slider.slidePage(new SiteObservationAddView().render().$el);
+			initmap('#map');
 		});
 		router.addRoute('Club/:id', function(id) { slider.slidePage(new ClubView(data["clubs-plongeurs.json"][id]).render().$el); });
 		router.addRoute('ClubsAmbassadeursList', function() { slider.slidePage(new ClubListView(data["clubs-plongeurs.json"]).render().$el); });
@@ -240,12 +178,12 @@
         	slider.slidePage(new PecheursSentinellesView(data["pecheurs-sentinelles.json"][id]).render().$el);
         });
 		router.addRoute('PecheursSentinellesMap', function() { 
-			slider.slidePage(new PecheursSentinellesMapView(data["pecheurs-sentinelles.json"], map, markers,hasConnection()).render().$el);
-			map = initmap(map,'#PecheursSentinelles-map-content');
+			slider.slidePage(new PecheursSentinellesMapView(data["pecheurs-sentinelles.json"]).render().$el);
+			initmap('#PecheursSentinelles-map-content');
 		});
 		router.addRoute('PecheursSentinellesAdd', function() { 
-			slider.slidePage(new PecheursSentinellesAddView(map, markers, hasConnection()).render().$el); 
-			map = initmap(map,'#map');
+			slider.slidePage(new PecheursSentinellesAddView().render().$el); 
+			initmap('#map');
 		});
 
 		// observations faune flore
@@ -253,12 +191,12 @@
         	slider.slidePage(new FauneFloreView(data["observations-faune-flore.json"][id]).render().$el);
         });
 		router.addRoute('FauneFloreMap', function() { 
-			slider.slidePage(new FauneFloreMapView(data["observations-faune-flore.json"], map, markers,hasConnection()).render().$el);
-			map = initmap(map,'#FauneFlore-map-content');
+			slider.slidePage(new FauneFloreMapView(data["observations-faune-flore.json"]).render().$el);
+			initmap('#FauneFlore-map-content');
 		});
 		router.addRoute('FauneFloreAdd', function() { 
-			slider.slidePage(new FauneFloreAddView(map, markers, hasConnection()).render().$el); 
-			map = initmap(map,'#map');
+			slider.slidePage(new FauneFloreAddView().render().$el); 
+			initmap('#map');
 		});
 
 		// observations pollution
@@ -266,12 +204,12 @@
         	slider.slidePage(new PollutionView(data["observations-pollution.json"][id]).render().$el);
         });
 		router.addRoute('PollutionMap', function() { 
-			slider.slidePage(new PollutionMapView(data["observations-pollution.json"], map, markers,hasConnection()).render().$el);
-			map = initmap(map,'#Pollution-map-content');
+			slider.slidePage(new PollutionMapView(data["observations-pollution.json"]).render().$el);
+			initmap('#Pollution-map-content');
 		});
 		router.addRoute('PollutionAdd', function() { 
-			slider.slidePage(new PollutionAddView(map, markers,hasConnection()).render().$el);
-			map = initmap(map,'#map');
+			slider.slidePage(new PollutionAddView().render().$el);
+			initmap('#map');
 		});
 
 		// observations usages
@@ -279,12 +217,12 @@
         	slider.slidePage(new UsagesView(data["observations-usages.json"][id]).render().$el);
         });
 		router.addRoute('UsagesMap', function() { 
-			slider.slidePage(new UsagesMapView(data["observations-usages.json"], map, markers,hasConnection()).render().$el);
-			map = initmap(map,'#Usages-map-content');
+			slider.slidePage(new UsagesMapView(data["observations-usages.json"]).render().$el);
+			initmap('#Usages-map-content');
 		});
 		router.addRoute('UsagesAdd', function() { 
-			slider.slidePage(new UsagesAddView(map, markers,hasConnection()).render().$el);
-			map = initmap(map,'#map');
+			slider.slidePage(new UsagesAddView().render().$el);
+			initmap('#map');
 		});
 
 	    // C'EST PARTI !!

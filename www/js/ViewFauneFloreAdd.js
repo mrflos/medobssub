@@ -1,4 +1,4 @@
-var FauneFloreAddView = function (map, markers, connection) {
+var FauneFloreAddView = function () {
 
     this.initialize = function() {
         this.$el = $('<div/>');
@@ -7,7 +7,7 @@ var FauneFloreAddView = function (map, markers, connection) {
 
     this.render = function() {
         this.$el.html(this.template());
-        init_form_controls(this.$el, '#FauneFlore', map, markers, connection);
+        init_form_controls(this.$el, '#FauneFlore');
         return this;
     };
 

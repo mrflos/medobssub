@@ -1,4 +1,4 @@
-var UsagesAddView = function (map, markers, connection) {
+var UsagesAddView = function () {
 
     this.initialize = function() {
         this.$el = $('<div/>');
@@ -8,7 +8,7 @@ var UsagesAddView = function (map, markers, connection) {
 
     this.render = function() {
         this.$el.html(this.template());
-        init_form_controls(this.$el, '#Usages', map, markers, connection);
+        init_form_controls(this.$el, '#Usages');
         return this;
     };
 

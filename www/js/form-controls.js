@@ -1,12 +1,11 @@
-function init_form_controls(form, exiturl, map, markers, connection) {
+function init_form_controls(form, exiturl) {
     //carte
     var lat = $('#latitude', form);
     var lng = $('#longitude', form);
+    markers.clearLayers();
 
     function onLocationFound(position) {
-        map.removeLayer(markers);
-       
-        markers = new L.FeatureGroup();
+
         var radius = position.coords.accuracy / 2;
         var marker = L.marker([position.coords.latitude, position.coords.longitude], {draggable: true});
         lat.val(position.coords.latitude);
@@ -23,15 +22,11 @@ function init_form_controls(form, exiturl, map, markers, connection) {
         });
 
         markers.addLayer(marker);
-        map.addLayer(markers);
     }
 
     function onLocationError(error) {
         console.log('Geolocation error code: '    + error.code    + '\n' +
               'Geolocation error message: ' + error.message + '\n');
-
-        map.removeLayer(markers);
-        markers = new L.FeatureGroup();
         lat.val('43.28208');
         lng.val('5.34579');
         map.setView([43.28208, 5.34579]);
@@ -46,9 +41,8 @@ function init_form_controls(form, exiturl, map, markers, connection) {
                 lng.val(result.lng);
         });
         markers.addLayer(marker);
-        map.addLayer(markers);
     }
-    var gps = navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError, { enableHighAccuracy:true, timeout: 5000 });
+    var gps = navigator.geolocation.getCurrentPosition(onLocationFound, onLocationError, {timeout: 4000 });
 
     //va cliquer sur la bonne tabulation dans le formulaire
     $('.navigation-control .btn', form).on("touchend", function() {

@@ -1,4 +1,4 @@
-var SiteObservationAddView = function (map, markers, connection) {
+var SiteObservationAddView = function () {
 
     this.initialize = function() {
         this.$el = $('<div/>');
@@ -7,7 +7,7 @@ var SiteObservationAddView = function (map, markers, connection) {
 
     this.render = function() {
         this.$el.html(this.template());
-        init_form_controls(this.$el, '#SiteObservation', map, markers, connection);
+        init_form_controls(this.$el, '#SiteObservation');
         return this;
     };
 
