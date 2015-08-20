@@ -1,0 +1,10 @@
+<ion-view>
+  <ion-nav-title>{{title}}</ion-nav-title>
+  <ion-content class="padding">
+    <ion-list show-delete="false" show-reorder="false">
+      <ion-item ng-repeat="item in entries" href="#/{{url}}item/{{item['id_fiche']}}" class="item item-avatar">
+        {{item[titlefield]}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

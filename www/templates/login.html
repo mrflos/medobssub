@@ -1,0 +1,30 @@
+<ion-view view-title="Identification" data-ng-init="loginInit()">
+  <ion-content>
+    <div class="list card">
+      <div class="item item-divider">J'ai déja un compte utilisateur</div>
+      <div class="item item-body">
+        <form role="form" ng-init="loginForm = {}">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email ou NomWiki</span>
+            <input type="text" name="email" ng-model="loginForm.email" required placeholder="votre@email.com">
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Mot de passe</span>
+            <input type="password" name="password" ng-model="loginForm.password" required placeholder="Mot de passe">
+          </label>
+          <div class="padding">
+            <button type="submit" class="button button-block button-positive" ng-click="handleLoginBtnClick(loginForm)">S'identifier</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-divider">Créer un nouveau compte utilisateur</div>
+      <div class="item item-body">
+        <a href="#/register" class="button button-block button-positive">Devenir sentinelle !</a>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,15 @@
+<ion-view>
+  <ion-nav-title>{{title}}</ion-nav-title>
+  <ion-content class="padding">
+    <ion-list show-delete="false" show-reorder="false">
+      <ion-item ng-repeat="item in entries" href="#/tab/{{url}}item/{{item['id_fiche']}}" class="item item-avatar">
+        <img ng-if="item[imagefield]" ng-src="{{rootUrl}}/files/{{item[imagefield]}}" style="width: 64px; height: 64px">
+        <img ng-if="!item[imagefield]" ng-src="{{fillerimage}}" style="width: 64px; height: 64px">
+        {{item[titlefield]}}
+        <p>
+          {{item[descriptionfield]}}
+        </p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

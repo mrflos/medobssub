@@ -1,0 +1,95 @@
+@font-face {
+  font-family:'fontscorecomttwcenmt';
+  src:url('../fonts/fontscorecomttwcenmt.eot') format('eot'),
+  url('../fonts/fontscorecomttwcenmt.woff') format('woff'),
+  url('../fonts/fontscorecomttwcenmt.ttf') format('truetype');
+  font-weight:normal;font-style:normal; font-size: 20px;
+
+}
+@font-face {
+  font-family:'Lato';
+  src:url('../fonts/LatoLatin-Regular.eot') format('eot'),
+  url('../fonts/LatoLatin-Regular.woff') format('woff'),
+  url('../fonts/LatoLatin-Regular.ttf') format('truetype');
+  font-weight:normal;font-style:normal; font-size: 20px;
+
+}
+
+/* Charte medobs
+Bleu foncé rgb(29,26,84)
+Bleu turquoise rgb(65,152,127)
+Pêcheurs rgb(133,102,54)
+Plongeurs rgb(127,28,52)
+bleu icones rgb(23,41,130)
+*/
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        rgb(29,26,84) !default;
+$calm:                            rgb(65,152,127) !default;
+$balanced:                        rgb(133,102,54) !default;
+$energized:                       #ffc900 !default;
+$assertive:                       rgb(127,28,52) !default;
+$royal:                           rgb(23,41,130) !default;
+$dark:                            #2C3E50 !default;
+
+$tabs-icon-size : 33px;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+body {
+  font-family: fontscorecomttwcenmt;
+}
+
+.list-picto {
+  float:left;
+  margin-right:10px;
+  margin-left:-10px;
+}
+.icon-svg-carte, .icon-svg-carte-outline {
+background:url(../img/icon-carte.svg) no-repeat center center;
+background-size: 28px;
+}
+.icon-svg-club, .icon-svg-club-outline {
+background:url(../img/icon-club.svg) no-repeat center center;
+background-size: 30px;
+}
+.icon-svg-obs, .icon-svg-obs-outline {
+background:url(../img/icon-obs.svg) no-repeat center center;
+background-size: 26px;
+}
+
+// plein ecran carto
+.fullscreen {
+  height:100vh;
+  width:100%;
+}
+
+// cache le controles des layers pour les cartes
+.leaflet-control-layers {
+  display: none;
+}
+
+// mise en page bazar
+
+//.BAZ_fiche_titre {display:none;}
+.titre_type_fiche {
+  font-size: 20px;
+}
+.BAZ_rubrique {
+  margin: 0 0 10px 0;
+}
+.BAZ_label {font-weight: bold;display: block;}
+.BAZ_texte {display:block;}
+
+.item-input input[type="file"] {
+  display: block;
+  overflow: auto;
+}
+.item-select select {
+  direction:ltr;
+}

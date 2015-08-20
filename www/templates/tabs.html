@@ -1,0 +1,33 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-royal">
+
+  <!-- Observation Tab -->
+  <ion-tab title="Observer" icon-off="icon-svg-obs-outline" icon-on="icon-svg-obs" href="#/tab/home">
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Sentinelles Tab -->
+  <ion-tab title="Sentinelles" icon-off="icon-svg-carte-outline" icon-on="icon-svg-carte" href="#/tab/sites/sentinelle">
+    <ion-nav-view name="tab-sites"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Clubs Tab -->
+  <ion-tab title="Ambassadeurs" icon-off="icon-svg-club-outline" icon-on="icon-svg-club" href="#/tab/clubs/clubs">
+    <ion-nav-view name="tab-clubs"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Account Tab -->
+  <ion-tab title="Mon compte" icon-off="ion-ios-person" icon-on="ion-ios-person" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
+
+  <!-- A propos Tab -->
+  <ion-tab title="A propos" icon-off="ion-ios-information" icon-on="ion-ios-information" href="#/tab/apropos">
+    <ion-nav-view name="tab-apropos"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

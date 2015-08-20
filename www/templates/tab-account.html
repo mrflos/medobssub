@@ -1,0 +1,29 @@
+<ion-view view-title="Mon compte">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        Connecté en tant que <a href="mailto:{{user.email}}">{{user.name}}</a>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-assertive" ng-click="handleLogoutBtnClick()">Se déconnecter</button>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="item item-divider">
+        Ma fiche sentinelle
+      </div>
+      <div class="padding" ng-bind-html="entry"></div>
+    </div>
+    <div ng-if="mesfiches" class="list card">
+      <div class="item item-divider">
+        Mes fiches
+      </div>
+      <ion-list show-delete="false" show-reorder="false">
+        <ion-item ng-repeat="item in mesfiches" href="#/tab/accountitem/{{item['id_fiche']}}" class="item">
+          {{item.bf_titre}}
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
