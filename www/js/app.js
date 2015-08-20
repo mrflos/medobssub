@@ -1,237 +1,209 @@
-// We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
-(function () {
+// Ionic medobssub App
 
-	// accelerre le touch pour en faire un clic
-	window.addEventListener('load', function() {
-	    new FastClick(document.body);
-	}, false);
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'medobssub' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+// 'medobssub.services' is found in services.js
+// 'medobssub.controllers' is found in controllers.js
+angular.module('medobssub', ['ionic', 'medobssub.controllers', 'medobssub.services', 'geolocation', 'leaflet-directive'])
 
-    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
-    
-    MenuObservatoireView.prototype.template = Handlebars.compile($("#menu-observatoire-tpl").html());
-    MenuPecheursView.prototype.template = Handlebars.compile($("#menu-pecheurs-tpl").html());
-    
-    IndicePaysagerView.prototype.template = Handlebars.compile($("#IndicePaysager-tpl").html());
-    IndicePaysagerAddView.prototype.template = Handlebars.compile($("#IndicePaysager-add-tpl").html());
-    IndicePaysagerListView.prototype.template = Handlebars.compile($("#IndicePaysager-list-tpl").html());
-    
-    ClubView.prototype.template = Handlebars.compile($("#Club-tpl").html());
-    ClubListView.prototype.template = Handlebars.compile($("#Club-list-tpl").html());
-    
-    SiteObservationView.prototype.template = Handlebars.compile($("#SiteObservation-tpl").html());
-    SiteObservationMapView.prototype.template = Handlebars.compile($("#SiteObservation-map-tpl").html());
-    SiteObservationAddView.prototype.template = Handlebars.compile($("#SiteObservation-add-tpl").html());
+.run(function($ionicPlatform, $ionicPopup, $log) {
 
-    PecheursSentinellesView.prototype.template = Handlebars.compile($("#PecheursSentinelles-tpl").html());
-    PecheursSentinellesMapView.prototype.template = Handlebars.compile($("#PecheursSentinelles-map-tpl").html());
-    PecheursSentinellesAddView.prototype.template = Handlebars.compile($("#PecheursSentinelles-add-tpl").html());
-
-    FauneFloreView.prototype.template = Handlebars.compile($("#FauneFlore-tpl").html());
-    FauneFloreMapView.prototype.template = Handlebars.compile($("#FauneFlore-map-tpl").html());
-    FauneFloreAddView.prototype.template = Handlebars.compile($("#FauneFlore-add-tpl").html());
-
-    PollutionView.prototype.template = Handlebars.compile($("#Pollution-tpl").html());
-    PollutionMapView.prototype.template = Handlebars.compile($("#Pollution-map-tpl").html());
-    PollutionAddView.prototype.template = Handlebars.compile($("#Pollution-add-tpl").html());
-
-    UsagesView.prototype.template = Handlebars.compile($("#Usages-tpl").html());
-    UsagesMapView.prototype.template = Handlebars.compile($("#Usages-map-tpl").html());
-    UsagesAddView.prototype.template = Handlebars.compile($("#Usages-add-tpl").html());
-
-    /* ---------------------------------- Local Variables ---------------------------------- */
-    var slider = new PageSlider($('body'));
-    var store;
-
-    // les sources pour la base de données.nom fichier sauvé, url service json
-    var sources = [
-	["clubs-plongeurs.json", "http://ecorem.fr/plongeurs-sentinelles/wakka.php?wiki=SaisIndice/json&form=30"],
-	["indice-paysager.json", "http://ecorem.fr/plongeurs-sentinelles/wakka.php?wiki=SaisIndice/json&form=26"],
-	["site-observation.json", "http://ecorem.fr/plongeurs-sentinelles/wakka.php?wiki=SaisIndice/json&form=27"],
-	["pecheurs-sentinelles.json", "http://ecorem.fr/pecheurs-sentinelles/wakka.php?wiki=SaisIndice/json&form=25"],
-	["observations-faune-flore.json", "http://ecorem.fr/pecheurs-sentinelles/wakka.php?wiki=SaisIndice/json&form=26"],
-	["observations-pollution.json", "http://ecorem.fr/pecheurs-sentinelles/wakka.php?wiki=SaisIndice/json&form=27"],
-	["observations-usages.json", "http://ecorem.fr/pecheurs-sentinelles/wakka.php?wiki=SaisIndice/json&form=28"]
-    ];
-    var data = new Array();
-
-
-    /* --------------------------------- Event Registration -------------------------------- */
-    document.addEventListener('deviceready', function () {
-
-		// fenetres d'alerte plus belles
-        if (navigator.notification) { 
-            window.alert = function (message) {
-                navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Mebobs-Sub", // title
-                    'OK'        // buttonName
-                );
-            };
-        }
-
-		// on sauve dans les données de l'application
-		store = cordova.file.dataDirectory;
-		var i = 0;
-		loadFile(sources[i]);
-		//jQuery.each(sources, function(index, value) {
-			//window.resolveLocalFileSystemURL(store + value[0], gotFile, downloadAsset(value));
-			//window.resolveLocalFileSystemURL(store + value[0], gotFile);
-		//});
-		//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, onFileSystemFail);
-
-		 /* ---------------------------------- Local Functions ---------------------------------- */
-
-	    /*function onFileSystemSuccess(fileSystem) {
-	        jQuery.each(sources, function(index, value) {
-				window.resolveLocalFileSystemURL(store + value[0], readlocalfile(value), downloadAsset(value));
-			});
-	    }
-
-	    function onFileSystemFail(evt) {
-	        console.log(evt.target.error.code);
-	    }*/
-	    function loadFile(filetab) {
-	    	console.log(filetab[0]);
-	    	window.resolveLocalFileSystemURL(store + filetab[0], gotFile, downloadAsset(filetab));
-	    }
-
-	    function downloadAsset(tabsource) {
-	    	if (hasConnection()) {
-				var fileTransfer = new FileTransfer();
-				fileTransfer.download(tabsource[1] + '&order=alphabetique&demand=entries&html=1', store + tabsource[0],
-				function(entry) {
-					console.log("Transfer "+ tabsource[1] + '&order=alphabetique&demand=entries&html=1' +" to "+store + tabsource[0] + " success!");
-					window.resolveLocalFileSystemURL(store + tabsource[0], gotFile);
-				},
-				function(err) {
-					console.log("Transfer "+ tabsource[1] + '&order=alphabetique&demand=entries&html=1' +" to "+store + tabsource[0] + " error..");
-					console.dir(err);
-				});
-	    	}
-		}
-
-
-		function fail(e) {
-			console.log("FileSystem Error");
-			console.dir(e);
-		}
-
-		function gotFile(fileEntry) {
-			console.log(fileEntry.name + " présent");
-			fileEntry.file(function(file) {
-				var reader = new FileReader();
-
-				reader.onloadend = function(e) {
-					data[fileEntry.name] = JSON.parse(this.result);
-					i = i + 1;
-					if (i<sources.length) {
-						loadFile(sources[i]);
-					}
-
-				}
-
-				reader.readAsText(file);
-			});
-
-		}
-
-	    
-
-		// page d'accueil
-    	router.addRoute('', function() { slider.slidePage(new HomeView(data, checkConnection()).render().$el); });
-
-    	// menus de navigation
-	    router.addRoute('menu-observatoire', function() { slider.slidePage(new MenuObservatoireView(data).render().$el); });
-		router.addRoute('menu-pecheurs', function() { slider.slidePage(new MenuPecheursView(data).render().$el); });
-
-		// elements du menu observatoire
-		// indice paysager
-	    router.addRoute('IndicePaysager/:id', function(id) { 
-        	slider.slidePage(new IndicePaysagerView(data["indice-paysager.json"][id]).render().$el);
+  $ionicPlatform.ready(function() {
+    // connection test
+    if(window.Connection) {
+      if(navigator.connection.type == Connection.NONE) {
+        $ionicPopup.confirm({
+          title: "Pas de connection à l'Internet",
+          content: "La connection est nécessaire pour votre inscription, pour visualiser les cartes ou pour la synchronisation des fiches.",
+          buttons: [
+            { text: 'Quitter' },
+            {
+              text: '<b>Continuer quand même</b>',
+              type: 'button-positive',
+            }]
+        })
+        .then(function(result) {
+          if(!result)
+            ionic.Platform.exitApp();
         });
-		router.addRoute('IndicePaysagerAdd', function() { 
-			slider.slidePage(new IndicePaysagerAddView().render().$el); 
-		});
-		router.addRoute('IndicePaysagerList', function() { 
-			slider.slidePage(new IndicePaysagerListView(data["indice-paysager.json"]).render().$el); 
-		});
-		// sites d'observation
-		router.addRoute('SiteObservation/:id', function(id) { 
-        	slider.slidePage(new SiteObservationView(data["site-observation.json"][id]).render().$el);
-        });
-		router.addRoute('SiteObservationMap', function() { 
-			slider.slidePage(new SiteObservationMapView(data["site-observation.json"]).render().$el);
-			initmap('#SiteObservation-map-content');
-			
-		});
-		router.addRoute('SiteObservationAdd', function() { 
-			slider.slidePage(new SiteObservationAddView().render().$el);
-			initmap('#map');
-		});
-		router.addRoute('Club/:id', function(id) { slider.slidePage(new ClubView(data["clubs-plongeurs.json"][id]).render().$el); });
-		router.addRoute('ClubsAmbassadeursList', function() { slider.slidePage(new ClubListView(data["clubs-plongeurs.json"]).render().$el); });
-	    
-	    // elements du menu pecheurs sentinelles
-	    // pecheurs sentinelles
-	    router.addRoute('PecheursSentinelles/:id', function(id) { 
-        	slider.slidePage(new PecheursSentinellesView(data["pecheurs-sentinelles.json"][id]).render().$el);
-        });
-		router.addRoute('PecheursSentinellesMap', function() { 
-			slider.slidePage(new PecheursSentinellesMapView(data["pecheurs-sentinelles.json"]).render().$el);
-			initmap('#PecheursSentinelles-map-content');
-		});
-		router.addRoute('PecheursSentinellesAdd', function() { 
-			slider.slidePage(new PecheursSentinellesAddView().render().$el); 
-			initmap('#map');
-		});
+      }
+    }
 
-		// observations faune flore
-	    router.addRoute('FauneFlore/:id', function(id) { 
-        	slider.slidePage(new FauneFloreView(data["observations-faune-flore.json"][id]).render().$el);
-        });
-		router.addRoute('FauneFloreMap', function() { 
-			slider.slidePage(new FauneFloreMapView(data["observations-faune-flore.json"]).render().$el);
-			initmap('#FauneFlore-map-content');
-		});
-		router.addRoute('FauneFloreAdd', function() { 
-			slider.slidePage(new FauneFloreAddView().render().$el); 
-			initmap('#map');
-		});
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleLightContent();
+    }
+  });
+})
 
-		// observations pollution
-	    router.addRoute('Pollution/:id', function(id) { 
-        	slider.slidePage(new PollutionView(data["observations-pollution.json"][id]).render().$el);
-        });
-		router.addRoute('PollutionMap', function() { 
-			slider.slidePage(new PollutionMapView(data["observations-pollution.json"]).render().$el);
-			initmap('#Pollution-map-content');
-		});
-		router.addRoute('PollutionAdd', function() { 
-			slider.slidePage(new PollutionAddView().render().$el);
-			initmap('#map');
-		});
-
-		// observations usages
-	    router.addRoute('Usages/:id', function(id) { 
-        	slider.slidePage(new UsagesView(data["observations-usages.json"][id]).render().$el);
-        });
-		router.addRoute('UsagesMap', function() { 
-			slider.slidePage(new UsagesMapView(data["observations-usages.json"]).render().$el);
-			initmap('#Usages-map-content');
-		});
-		router.addRoute('UsagesAdd', function() { 
-			slider.slidePage(new UsagesAddView().render().$el);
-			initmap('#map');
-		});
-
-	    // C'EST PARTI !!
-	    router.start();
-
-    }, false);
-
-}());
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+  //$ionicConfigProvider.views.forwardCache(true);
+  $ionicConfigProvider.views.maxCache(0);
 
 
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  // Ionic uses AngularUI Router which uses the concept of states
+  // Learn more here: https://github.com/angular-ui/ui-router
+  // Set up the various states which the app can be in.
+  // Each state's controller can be found in controllers.js
+  $stateProvider
+
+  // setup an abstract state for the tabs directive
+  .state('tab', {
+    url: "/tab",
+    abstract: true,
+    templateUrl: "templates/tabs.html"
+  })
+
+  // Each tab has its own nav history stack:
+
+  .state('tab.home', {
+    url: '/home',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/tab-home.html'
+      }
+    }
+  })
+  .state('tab.sites', {
+    cache: false,
+    url: '/sites/:formId',
+    views: {
+      'tab-sites': {
+        templateUrl: 'templates/map.html',
+        controller: 'MapCtrl',
+      }
+    }
+  })
+  .state('tab.sentinelleitem', {
+    url: '/sentinelleitem/:itemId',
+    views: {
+      'tab-sites': {
+        templateUrl: 'templates/item.html',
+        controller: 'ItemCtrl'
+      }
+    }
+  })
+  .state('tab.clubs', {
+    url: '/clubs/:formId',
+    views: {
+      'tab-clubs': {
+        templateUrl: 'templates/avatarlist.html',
+        controller: 'ListCtrl'
+      }
+    }
+  })
+  .state('tab.clubsitem', {
+    url: '/clubsitem/:itemId',
+    views: {
+      'tab-clubs': {
+        templateUrl: 'templates/item.html',
+        controller: 'ItemCtrl'
+      }
+    }
+  })
+  .state('tab.account', {
+    url: '/account',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-account.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+  .state('tab.accountitem', {
+    url: '/accountitem/:itemId',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/item.html',
+        controller: 'ItemCtrl'
+      }
+    }
+  })
+  
+  .state('tab.apropos', {
+    url: '/apropos',
+    views: {
+      'tab-apropos': {
+        templateUrl: 'templates/tab-apropos.html',
+      }
+    }
+  })
+
+  .state('tab.item', {
+    url: '/item/:itemId',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/item.html',
+        controller: 'ItemCtrl'
+      }
+    }
+  })
+
+  .state('tab.map', {
+    url: '/map/:formId',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/map.html',
+        controller: 'MapCtrl'
+      }
+    }
+  })
+  .state('tab.list', {
+    url: '/list/:formId',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/list.html',
+        controller: 'ListCtrl'
+      }
+    }
+  })
+  .state('tab.avatarlist', {
+    url: '/avatarlist/:formId',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/avatarlist.html',
+        controller: 'ListCtrl'
+      }
+    }
+  })
+  .state('tab.form', {
+    url: '/form/:formId',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/form.html',
+        controller: 'FormCtrl'
+      }
+    }
+  })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'WikiAuth'
+  })
+
+  .state('register', {
+    url: '/register',
+    templateUrl: 'templates/register.html',
+    controller: 'RegisterCtrl'
+  })
+
+  .state('autoLogin', {
+    url: '/autoLogin',
+    templateUrl: 'templates/autoLogin.html',
+    controller: 'WikiAuth'
+  });
 
 
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/autoLogin');
+
+});
