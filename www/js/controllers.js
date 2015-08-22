@@ -11,38 +11,117 @@ angular.module('medobssub.controllers', [])
   });
 })
 
-.controller('FormCtrl', function(config, $sce, $scope, $ionicHistory, $stateParams, Forms) {
+.controller('FormCtrl', function(config, $sce, $scope, $ionicHistory, $stateParams, $compile, $timeout, Forms) {
     Forms.get($stateParams.formId).then(function(form){
+      function htmlEntities(str) {
+          return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+      function $ (selector, el) {
+           if (!el) {el = document;}
+           return el.querySelectorAll(selector);
+      }
       $scope.title = 'Saisie : '+form.bn_label_nature;
       $scope.form = form;
-      $scope.getRequired = function(val)  {
-        if (val === true) {
-          return 'required';
-        } else {
-          return '';
+      $scope.fileNameChanged = function(elem)  {
+        var files = elem.files;
+        
+        var namesArr = [];
+        for (var i=0; i<files.length; i++) {
+           namesArr.push(files[i].name);
         }
-      };
-      $scope.getHtml = function(val)  {
-        if (val.indexOf("not-in-phone-app") > -1) {
-          return false;
-        } else {
-          return $sce.trustAsHtml(val);
-        }
-      };
-      $scope.setVisible = function()  {
-        // TODO : change the visible parts of the form
-        console.log('change');
+        $scope.nameString = namesArr.join(' ,');
+        $scope.$apply();
       };
 
+      $scope.fullform = '';
+      var rawform = '';
+      angular.forEach(form.prepared, function(item, key) {
+        if (item.type === 'html') {
+          if (item.label.indexOf("hide-in-ionic") === -1) {
+            rawform += item.label;
+          }
+        } else if (item.type === 'text' || item.type === 'date' || item.type === 'email' || item.type === 'url' || item.type === 'password' || item.type === 'number') {
+          rawform += '<label class="item item-input item-stacked-label">'+
+                        '<span class="input-label">'+item.label+'</span>'+
+                        '<input type="'+item.type+'" name="'+item.id+'" '+item.attributes+' placeholder="'+htmlEntities(item.label)+'" ';
+          if (item.required) {
+            rawform += ' required';
+          }
+          rawform += '>'+
+          '</label>';
+        } else if (item.type === 'range') {
+          rawform += '<div class="item item-divider">'+item.label+'</div>'+
+          '<div class="item range range-positive">'+
+            '<input type="range" name="'+item.id+'" '+item.attributes+' value="0" oninput="this.form.'+item.id+'number.value=this.value">'+
+            '<output name="'+item.id+'number" class="icon">0</output>'+
+          '</div>';
+        } else if (item.type === 'file') {
+          rawform += '<label class="item item-input item-stacked-label">'+
+            '<span class="input-label">'+item.label+'</span>'+
+            '<input style="display:none;" type="file" name="'+item.id+'" ng-model="'+item.id+'" ng-change="fileNameChanged(this)">'+
+            '<p class="inut-filename"></p>'+
+            '<div class="button button-block">Parcourir...</div>'+
+          '</label>';
+        } else if (item.type === 'textarea') {
+          rawform += '<label class="item item-input item-stacked-label">'+
+          '<span class="input-label">'+item.label+'</span>'+
+          '<textarea name="'+item.id+'" '+item.attributes+' placeholder="'+htmlEntities(item.label)+'" ';
+          if (item.required) {
+            rawform += ' required';
+          }
+          rawform += '></textarea>'+
+          '</label>';
+        } else if (item.type === 'select') {
+          rawform += '<label class="item item-input item-select">'+
+            '<div class="input-label">'+item.label+'</div>'+
+            '<select name="'+item.id+'" ';
+          if (item.required) {
+            rawform += ' required';
+          }
+          rawform += ' ng-model="item" ng-change="setVisible(\''+item.id+'\');">';
+          if (!item.required) {
+              //rawform += '<option value="choisir">choisir</option>';
+          }
+          angular.forEach(item.values.label, function(label, itemkey) {
+            rawform += '<option value="'+itemkey+'">'+label+'</option>';
+          });
+          rawform += '</select>'+
+          '</label>';         
+        } else if (item.type === 'checkbox') {
+          rawform += '<ul class="list">'+
+            '<li>'+item.label+'</li>'+
+            angular.forEach(item.values.label, function(label, itemkey) {
+              rawform += '<li class="item item-checkbox">'+
+                '<label class="checkbox">'+
+                 '<input name="'+item.id+'['+key+']" type="checkbox">'+
+                '</label>  '+label+'</li>';
+            });
+            rawform += '</ul>';
+        } else if (item.type === 'map') {
+          rawform += '<div class="map-wrapper">'+
+              '<leaflet center="geoloccenter" width="100%" height="300px"></leaflet>'+
+          '</div>';
+        } else if (item.type === 'hidden') {      
+          rawform += '<input type="'+item.type+'" name="'+item.id+'" value="'+item.values+'">';
+        }
+      });
+
+      $scope.setVisible = function(val)  {
+        console.log(this);
+        // change the visible parts of the form
+        var id = val.replace( "liste", "" );
+        angular.forEach($("div[id^='" + id + "']"), function(dom, key) {
+          dom.style = 'display:none';
+        });
+        angular.forEach($("div[id='" + id + '_' + this.item + "']"), function(dom, key) {
+          dom.style = 'display:block';
+        });
+      }; 
+
       angular.extend($scope, {
-          /*mapCenter: {
-              lat: 42.0300364,
-              lng: 6.9614337,
-              zoom: 5
-          },*/
           geoloccenter: {
             autoDiscover: true,
-            zoom: 5
+            zoom: 8
           },
           defaults: {
               tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -51,17 +130,9 @@ angular.module('medobssub.controllers', [])
           }
       });
 
+      $scope.fullform = rawform;
+
     });
-    /*
-    hélas le template bazar n'est pas adapté pour les mobiles
-    Forms.getTemplate($stateParams.formId).then(function(form){
-    $scope.form = $sce.trustAsHtml(form.html);
-    var dom = document.createElement('div');
-    dom.innerHTML = form.html;
-    var title = dom.querySelector("h2.titre_type_fiche");
-    $scope.title = title.innerHTML.replace(/&nbsp;/, '');
-    });
-    */
 })
 
 

@@ -106,7 +106,7 @@ angular.module('medobssub.services', [])
         template: '<ion-spinner icon="ripple" class="spinner-stable"></ion-spinner><br> Récupération des données...'
       });
       // Get the entry list from the server
-      return $http.get(config.forms[idform].wikiUrl + '&demand=forms&form='+config.forms[idform].form, {cache: true}).then(function(resp) {
+      return $http.get(config.forms[idform].wikiUrl + '&demand=forms', {cache: true}).then(function(resp) {
         $ionicLoading.hide();
         //$log.info(resp.data);
         return resp.data;
@@ -127,7 +127,7 @@ angular.module('medobssub.services', [])
       return $http.get(config.forms[idform].wikiUrl + '&demand=forms&form='+config.forms[idform].form, {cache: true}).then(function(resp) {
         $ionicLoading.hide();
         //$log.info(resp.data);
-        return resp.data;
+        return resp.data[config.forms[idform].form];
       }, function(error) {
         $ionicLoading.hide();
         $log.error(error);

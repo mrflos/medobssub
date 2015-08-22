@@ -206,4 +206,17 @@ angular.module('medobssub', ['ionic', 'medobssub.controllers', 'medobssub.servic
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/autoLogin');
 
+})
+
+.directive('dynamic', function ($compile) {
+  return {
+    restrict: 'A',
+    replace: true,
+    link: function (scope, ele, attrs) {
+      scope.$watch(attrs.dynamic, function(html) {
+        ele.html(html);
+        $compile(ele.contents())(scope);
+      });
+    }
+  };
 });
