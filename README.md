@@ -10,8 +10,9 @@ Application pour smartphone basée sur [Ionic Framework](http://ionicframework.c
  - **nodejs** language de programmation en javascript pouvant être utilisé coté serveur 
  - **android sdk** : bibliothèques de développement pour android
  - **apache cordova** : ensemble de bibliothèque pour transformer une appli html en appli smartphone
- - **ionic framework** : 
- *Astuce : http://visualstudio.com/ : editeur de code de chez microsoft : possibilité d'installer directement ces outils, il ne manquera plus que Ionic Framework*
+ - **ionic framework** : framework pour graphismes modernes, et bibliotheque angularjs, fonctionnant pour ios et android
+
+*Astuce : http://visualstudio.com/ : editeur de code de chez microsoft : possibilité d'installer directement ces outils, il ne manquera plus que Ionic Framework*
 
 Une fois tout installé, ouvrir le terminal windows, et lancer pour installer ionic : 
 ```bash
