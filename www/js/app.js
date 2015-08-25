@@ -220,3 +220,29 @@ angular.module('medobssub', ['ionic', 'medobssub.controllers', 'medobssub.servic
     }
   };
 });
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //    global js functions                                                                                          //
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// efface la prévisualisation de l'image et vide le champ file 
+resetFileInput = function(element) {
+  element.parentNode.previousSibling.value = null;
+  if (element.parentNode.previousSibling.files && element.parentNode.previousSibling.files.length && element.parentNode.previousSibling.parentNode) {
+    // workaround for IE 10 and lower, pre-webkit Opera
+
+    var form = document.createElement('form');
+    element.parentNode.previousSibling.parentNode.insertBefore(form, element.parentNode.previousSibling);
+
+    form.appendChild(element.parentNode.previousSibling);
+    form.reset();
+
+    form.parentNode.insertBefore(element.parentNode.previousSibling, form);
+    element.parentNode.previousSibling.parentNode.removeChild(form);
+  }
+
+  element.parentNode.nextSibling.style.display = 'block';
+  element.parentNode.innerHTML = '';
+  return false;
+};

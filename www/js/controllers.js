@@ -1,7 +1,7 @@
 angular.module('medobssub.controllers', [])
 
 .controller('ItemCtrl', function(config, $sce, $scope, $ionicHistory, $stateParams, Entries) {
-  $scope.rootUrl = config.rootUrl;
+  $scope.rootUrl = config.wikis[config.authwiki]; // todo recuperer l'id_typeannonce de la fiche
   Entries.get($stateParams.itemId).then(function(entry){
     $scope.entry = $sce.trustAsHtml(entry.html);
     var dom = document.createElement('div');
@@ -11,26 +11,41 @@ angular.module('medobssub.controllers', [])
   });
 })
 
-.controller('FormCtrl', function(config, $sce, $scope, $ionicHistory, $stateParams, $compile, $timeout, Forms) {
+.controller('FormCtrl', function(config, $sce, $scope, $ionicHistory, $stateParams, $compile, $timeout, Forms, FileInputService) {
     Forms.get($stateParams.formId).then(function(form){
+      // pour echaper les entitées html
       function htmlEntities(str) {
-          return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+          return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
       }
+
+      // query selector à la jquery
       function $ (selector, el) {
            if (!el) {el = document;}
            return el.querySelectorAll(selector);
       }
       $scope.title = 'Saisie : '+form.bn_label_nature;
+
       $scope.form = form;
-      $scope.fileNameChanged = function(elem)  {
-        var files = elem.files;
-        
-        var namesArr = [];
-        for (var i=0; i<files.length; i++) {
-           namesArr.push(files[i].name);
-        }
-        $scope.nameString = namesArr.join(' ,');
-        $scope.$apply();
+      //$scope.formitem.id_typeannonce = form.bn_id_nature;
+      
+      $scope.onFileUpload = function (element) {
+          $scope.$apply(function (scope) {
+              var file = element.files[0];
+              var preview = $(".output[name='" + element.name + "-preview']")[0];
+              if (/(image\/gif|image\/jpg|image\/jpeg|image\/tiff|image\/png)$/i.test( file.type )) {
+                FileInputService.readFileAsync(file).then(function (fileInputContent) {
+                  // on affiche l'image
+                  preview.innerHTML = '<img class="full-image" src="'+fileInputContent+'" alt="image preview">' +
+                                      '<button class="button button-cancel-image button-assertive" onclick="resetFileInput(this)"><i class="icon ion-ios-close"></i></button>';
+
+                });
+              } else {
+                preview.innerHTML = file.name +
+                                    '<button class="button button-assertive button-cancel"><i class="icon ion-ios-close"></i></button>';
+              }
+              // on cache le bouton
+              $(".button-" + element.name + "")[0].style.display = 'none';
+          });
       };
 
       $scope.fullform = '';
@@ -43,29 +58,33 @@ angular.module('medobssub.controllers', [])
         } else if (item.type === 'text' || item.type === 'date' || item.type === 'email' || item.type === 'url' || item.type === 'password' || item.type === 'number') {
           rawform += '<label class="item item-input item-stacked-label">'+
                         '<span class="input-label">'+item.label+'</span>'+
-                        '<input type="'+item.type+'" name="'+item.id+'" '+item.attributes+' placeholder="'+htmlEntities(item.label)+'" ';
+                        '<input type="'+item.type+'" ng-model="formitem.'+item.id+'" name="'+item.id+'" '+item.attributes+' placeholder="'+htmlEntities(item.label)+'" ng-trim="false" ng-item="formitem.'+item.id+'=\'\'"';
+          var msg = '';
           if (item.required) {
             rawform += ' required';
+            msg +=  '<div ng-show="form.$submitted || form.'+item.id+'.$touched">'+
+                      '<div ng-show="form.'+item.id+'.$error.required" class="assertive">Ce champ est obligatoire.</div>' +
+                    '</div>';
+
           }
-          rawform += '>'+
+          rawform += '>'+msg+
           '</label>';
         } else if (item.type === 'range') {
           rawform += '<div class="item item-divider">'+item.label+'</div>'+
           '<div class="item range range-positive">'+
-            '<input type="range" name="'+item.id+'" '+item.attributes+' value="0" oninput="this.form.'+item.id+'number.value=this.value">'+
+            '<input type="range" ng-model="formitem.'+item.id+'" name="'+item.id+'" '+item.attributes+' oninput="this.form.'+item.id+'number.value=this.value" ng-init="formitem.'+item.id+'=0" ng-trim="false">'+
             '<output name="'+item.id+'number" class="icon">0</output>'+
           '</div>';
         } else if (item.type === 'file') {
-          rawform += '<label class="item item-input item-stacked-label">'+
-            '<span class="input-label">'+item.label+'</span>'+
-            '<input style="display:none;" type="file" name="'+item.id+'" ng-model="'+item.id+'" ng-change="fileNameChanged(this)">'+
-            '<p class="inut-filename"></p>'+
-            '<div class="button button-block">Parcourir...</div>'+
+          rawform += '<label class="item">'+
+            '<input style="display:none;" ng-model="formitem.'+item.id+'" type="file" '+item.attributes+' name="'+item.id+'" onchange="angular.element(this).scope().onFileUpload(this)" ng-trim="false" >'+
+            '<p class="output" name="'+item.id+'-preview"></p>'+
+            '<div class="button button-block button-'+item.id+'"><i class="icon ion-upload"></i> '+item.label+'</div>'+
           '</label>';
         } else if (item.type === 'textarea') {
-          rawform += '<label class="item item-input item-stacked-label">'+
-          '<span class="input-label">'+item.label+'</span>'+
-          '<textarea name="'+item.id+'" '+item.attributes+' placeholder="'+htmlEntities(item.label)+'" ';
+          rawform += '<label class="item item-input">'+
+          //'<span class="input-label">'+item.label+'</span>'+
+          '<textarea ng-model="formitem.'+item.id+'" name="'+item.id+'" '+item.attributes+' placeholder="'+htmlEntities(item.label)+'" ng-trim="false" ';
           if (item.required) {
             rawform += ' required';
           }
@@ -78,10 +97,10 @@ angular.module('medobssub.controllers', [])
           if (item.required) {
             rawform += ' required';
           }
-          rawform += ' ng-model="item" ng-change="setVisible(\''+item.id+'\');">';
-          if (!item.required) {
-              //rawform += '<option value="choisir">choisir</option>';
-          }
+          rawform += ' ng-model="formitem.'+item.id+'" ng-change="setVisible(\''+item.id+'\', this.value);" ng-trim="false" >';
+          //if (!item.required) {
+            rawform += '<option style="display:none" value="">choisir</option>';
+          //}
           angular.forEach(item.values.label, function(label, itemkey) {
             rawform += '<option value="'+itemkey+'">'+label+'</option>';
           });
@@ -93,7 +112,7 @@ angular.module('medobssub.controllers', [])
             angular.forEach(item.values.label, function(label, itemkey) {
               rawform += '<li class="item item-checkbox">'+
                 '<label class="checkbox">'+
-                 '<input name="'+item.id+'['+key+']" type="checkbox">'+
+                 '<input ng-model="formitem.'+item.id+'['+key+']" name="'+item.id+'['+key+']" type="checkbox">'+
                 '</label>  '+label+'</li>';
             });
             rawform += '</ul>';
@@ -102,21 +121,28 @@ angular.module('medobssub.controllers', [])
               '<leaflet center="geoloccenter" width="100%" height="300px"></leaflet>'+
           '</div>';
         } else if (item.type === 'hidden') {      
-          rawform += '<input type="'+item.type+'" name="'+item.id+'" value="'+item.values+'">';
+          rawform += '<input ng-model="formitem.'+item.id+'" type="'+item.type+'" name="'+item.id+'" ng-init="formitem.'+item.id+' =\''+htmlEntities(item.values)+'\'">';
         }
       });
+      rawform += '<input type="hidden" ng-model="formitem.id_typeannonce" name="id_typeannonce" ng-init="formitem.id_typeannonce = '+htmlEntities(form.bn_id_nature)+'">';
+      
 
-      $scope.setVisible = function(val)  {
-        console.log(this);
+      $scope.setVisible = function(id)  {
         // change the visible parts of the form
-        var id = val.replace( "liste", "" );
+        var val = this.formitem[id];
+        id = id.replace( "liste", "" );
         angular.forEach($("div[id^='" + id + "']"), function(dom, key) {
           dom.style = 'display:none';
         });
-        angular.forEach($("div[id='" + id + '_' + this.item + "']"), function(dom, key) {
+        angular.forEach($("div[id='" + id + '_' + val + "']"), function(dom, key) {
           dom.style = 'display:block';
         });
       }; 
+
+      $scope.submitForm = function(data) {
+        //Forms.post(JSON.stringify(data));
+        Forms.post(data, config.wikis[config.forms[$stateParams.formId].wikisource] + '/wakka.php?wiki=BazaR/json&demand=save_entry');
+      };
 
       angular.extend($scope, {
           geoloccenter: {
@@ -147,7 +173,7 @@ angular.module('medobssub.controllers', [])
   $scope.descriptionfield = config.forms[$stateParams.formId].descriptionfield;
   $scope.imagefield = config.forms[$stateParams.formId].imagefield;
   $scope.fillerimage = config.forms[$stateParams.formId].fillerimage;
-  $scope.rootUrl = config.rootUrl;
+  $scope.rootUrl = config.wikis[config.forms[$stateParams.formId].wikisource];
   Entries.all($stateParams.formId).then(function(entries){
     $scope.entries = entries;
   });
@@ -233,7 +259,7 @@ angular.module('medobssub.controllers', [])
 
   // bouton de déconnexion
   $scope. handleLogoutBtnClick = function() {
-    $http.post(config.rootUrl + '/wakka.php?wiki=ParametresUtilisateur/auth', {
+    $http.post(config.wikis[config.authwiki] + '/wakka.php?wiki=ParametresUtilisateur/auth', {
       logout: 1
     }).success(function(resp) {
       $log.info(resp);
@@ -327,7 +353,7 @@ angular.module('medobssub.controllers', [])
         $ionicLoading.show({
           template: '<ion-spinner icon="ripple" class="spinner-stable"></ion-spinner><br>Connexion...'
         });
-        $http.post(config.rootUrl + '/wakka.php?wiki=ParametresUtilisateur/auth', {
+        $http.post(config.wikis[config.authwiki] + '/wakka.php?wiki=ParametresUtilisateur/auth', {
           name: loginForm.email,
           password: loginForm.password,
           remember: 1

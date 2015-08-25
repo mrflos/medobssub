@@ -47,9 +47,11 @@ git add -A #prise en compte des nouveaux fichiers
 git commit -am 'message qui explique mes modifications' #sauvegarde sur le dépot local des modifications
 git push origin #envoi des modifications au serveur github
 ```
+
 **Il vaut mieux s'y connaitre avec git car ces commandes ne sont pas les seules, et il y a énormément de possibilités**
-[Documentation complète de Git en francais](http://www.git-scm.com/book/fr/v2)
-[Un article d'aide sur Git](http://www.miximum.fr/enfin-comprendre-git.html)
+
+ - [Documentation complète de Git en francais](http://www.git-scm.com/book/fr/v2)
+ - [Un article d'aide sur Git](http://www.miximum.fr/enfin-comprendre-git.html)
 
 
 ## Utilisation de Ionic Framework
@@ -77,6 +79,7 @@ ionic serve --lab
 
 #### Tester l'application sur son smartphone
 **Votre smartphone doit être en mode Développeur et connecté par USB à votre ordinateur**
+
 Dans le terminal :
 ```bash
 cd Developpements\medobssub

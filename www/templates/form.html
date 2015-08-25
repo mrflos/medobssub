@@ -1,53 +1,13 @@
 <ion-view>
   <ion-nav-title>{{title}}</ion-nav-title>
   <ion-content>
-    <form class="list">
+    <form class="list" novalidate ng-submit="submitForm(formitem)">
       <div class="padding" dynamic="fullform"></div>
-     <!--  <div class="form-elem" ng-repeat="item in form.prepared">
-        <label ng-if="item.type === 'text' || item.type === 'date' || item.type === 'email' || item.type === 'url' || item.type === 'range' || item.type === 'password' || item.type === 'number'" class="item item-input item-stacked-label">
-          <span class="input-label">{{item.label}}</span>
-          <input type="{{item.type}}" name="{{item.id}}" {{item.attributes}} placeholder="{{item.label}}" {{getRequired(item.required)}}>
-        </label>
-
-        <label ng-if="item.type === 'file'" class="item item-input item-stacked-label">
-          <span class="input-label">{{item.label}}</span>
-          <input style="display:none;" type="file" onchange="angular.element(this).scope().fileNameChanged(this)">
-          <p>{{nameString}}</p>
-          <div class="button button-block">Parcourir...</div>
-        </label>
-
-        <label ng-if="item.type === 'textarea'" class="item item-input item-stacked-label">
-          <span class="input-label">{{item.label}}</span>
-          <textarea name="{{item.id}}" {{item.attributes}} placeholder="{{item.label}}" {{getRequired(item.required)}}></textarea>
-        </label>
-
-        <label ng-if="item.type === 'select'" class="item item-input item-select">
-          <div class="input-label">
-            {{item.label}}
-          </div>
-          <select name="{{item.id}}" {{getRequired(item.required)}}>
-            <option ng-if="!item.required" value="">choisir</option>
-            <option ng-repeat="(key, label) in item.values.label" value="{{key}}">{{label}}</option>
-          </select>
-        </label>
-
-        <ul ng-if="item.type === 'checkbox'" class="list">
-          <li>{{item.label}}</li>
-          <li ng-repeat="(key, label) in item.values.label" class="item item-checkbox">
-             <label class="checkbox">
-               <input name="{{item.id}}[{{key}}]" type="checkbox">
-             </label>
-             {{label}}
-          </li>
-        </ul>
-        
-        <div class="map-wrapper" ng-if="item.type === 'map'">
-              <leaflet center="geoloccenter" width="100%" height="300px"></leaflet>
-        </div>
-        <input ng-if="item.type === 'hidden'" type="{{item.type}}" name="{{item.id}}" value="{{item.values}}">
- -->
-        <!-- <div ng-if="item.type === 'html'" class="padding" ng-bind-html="getHtml(item.label)"></div>  -->
-
+      <input type="hidden" ng-model="formitem.antispam" name="antispam" ng-init="formitem.antispam = 1">
+      <div class="padding">
+        <button ngClick="Submit" type="submit" class="button button-block button-positive">Enregistrer</button>
+      </div>
     </form>
+    <!-- <pre>formitem = {{formitem | json}}</pre> -->
   </ion-content>
 </ion-view>
