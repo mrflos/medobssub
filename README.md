@@ -92,7 +92,7 @@ Dans le terminal :
 cd Developpements\medobssub
 ionic build --release
 ```
-*Le fichier sera disponible*
+*Le fichier android-x86-release-unsigned.apk sera disponible dans le dossier Developpements/medobssub/platforms/android/build/outputs/ *
 
 ## Dossiers et fichiers utiles
 *todo*
